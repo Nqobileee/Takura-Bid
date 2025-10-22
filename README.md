@@ -81,9 +81,9 @@ This architecture supports scalability, modular development, and secure communic
 | Name | Role |
 |------|------|
 | Edith N. Muyambiri | Frontend Development / UI Design |
-| [Add Name] | Backend Development |
-| [Add Name] | Database & API Integration |
-| [Add Name] | Documentation & Testing |
+| Matips B Machangu | Backend Development |
+| Nyasha Nyekete | Database & API Integration |
+| Princess B Kwaniya | Documentation & Testing |
 
 ---
 
@@ -129,4 +129,4 @@ TakuraBid — Empowering Zimbabwe’s transport sector through technology.
 
 ---
 
-Would you like me to make a **shorter version** (for GitHub’s front page summary) — something like a 2–3 paragraph introduction with badges and a brief stack section? It’s useful for the top of the repo before the full README.
+ 
