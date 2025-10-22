@@ -282,9 +282,9 @@ function initializeNavigation() {
 // Analytics counters
 function initializeAnalytics() {
     const clicks = 1284;
-    const jobs = 236;
-    // Show a monthly earnings example within requested range ($2,000 - $4,000)
-    const total = 3200;
+    const jobs = 23;
+    // Total earnings set to $27,000
+    const total = 27000;
     const rating = 4.7;
     const elClicks = document.getElementById('profileClicks');
     const elJobs = document.getElementById('jobsWorked');
@@ -311,7 +311,7 @@ function initializeCharts() {
                 labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
                 datasets: [{
                     label: 'Jobs Completed',
-                    data: [3, 5, 2, 8, 4, 1, 0],
+                    data: [4, 5, 3, 6, 2, 3, 0],
                     backgroundColor: '#391b49',
                     borderColor: '#2d1538',
                     borderWidth: 1,
@@ -389,8 +389,8 @@ function initializeFinancesModal() {
     if (!trigger || !modal || !closeBtn) return;
     trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        // Use monthly/summary total within $2k-$4k range to match dashboard example
-        const total = 3200;
+        // Set total to match dashboard
+        const total = 27000;
         const finTotal = document.getElementById('financesTotal');
         if (finTotal) finTotal.textContent = `$${total.toLocaleString()}`;
         modal.classList.add('show');
