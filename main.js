@@ -283,7 +283,7 @@ function initializeNavigation() {
 function initializeAnalytics() {
     const clicks = 1284;
     const jobs = 236;
-    const total = 126400;
+    const total = 12640;
     const rating = 4.7;
     const elClicks = document.getElementById('profileClicks');
     const elJobs = document.getElementById('jobsWorked');
@@ -343,7 +343,7 @@ function initializeCharts() {
                 labels: ['Apr','May','Jun','Jul','Aug','Sep'],
                 datasets: [{
                     label: 'Monthly Earnings',
-                    data: [12000, 15000, 18000, 14000, 16000, 19000],
+                    data: [1200, 1500, 1800, 1400, 1600, 1900],
                     borderColor: '#391b49',
                     backgroundColor: 'rgba(57, 27, 73, 0.1)',
                     borderWidth: 3,
@@ -415,7 +415,7 @@ function initializeFinancesModal() {
     if (!trigger || !modal || !closeBtn) return;
     trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        const total = 126400;
+        const total = 12640;
         const finTotal = document.getElementById('financesTotal');
         if (finTotal) finTotal.textContent = `$${total.toLocaleString()}`;
         modal.classList.add('show');
@@ -989,3 +989,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
