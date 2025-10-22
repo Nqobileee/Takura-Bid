@@ -464,7 +464,7 @@ const PRELOADED_CHATS = {
         { from: 'them', text: '$4,500, pickup Monday 8 AM. I\'ll send details.' }
     ],
     'Mechanic (Joe)': [
-        { from: 'them', text: 'Service due in 1,200 miles. Book appointment?' },
+        { from: 'them', text: 'Service due in 1,200 kilometres. Book appointment?' },
         { from: 'me', text: 'Yes, next Tuesday morning works. What needs attention?' },
         { from: 'them', text: 'Oil change, brake inspection, and tire rotation.' },
         { from: 'me', text: 'Sounds good. How long will it take?' },
@@ -989,4 +989,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
 
