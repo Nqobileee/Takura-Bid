@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakuraBid - Load Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar Navigation Panel -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <!-- Logo Section -->
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="16" fill="#22C55E"/>
+                            <path d="M8 18h16v6H8v-6zm2-4h12v3H10v-3z" fill="white"/>
+                            <circle cx="12" cy="26" r="2" fill="white"/>
+                            <circle cx="20" cy="26" r="2" fill="white"/>
+                            <path d="M14 12h4v2h-4v-2z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">TakuraBid</span>
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6 6a1 1 0 01-1.414 0l-6-6A1 1 0 013 6.586V4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M4 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M8 11h4" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <span>Load Board</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zM4 7h12v9a1 1 0 01-1 1H5a1 1 0 01-1-1V7z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                <span>Finances</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M15 7v2a3 3 0 003 3v2a1 1 0 01-1 1h-2l-3 3v-3h-2a3 3 0 01-3-3V9a3 3 0 013-3h7z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                <span>Messages</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 3h14v14H3V3z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M9 9l2 2 4-4" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Upgrade Section -->
+                <div class="upgrade-section">
+                    <div class="upgrade-card">
+                        <div class="upgrade-illustration">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="30" cy="30" r="30" fill="#F0FDF4"/>
+                                <path d="M15 25h30v15H15v-15zm3-6h24v4H18v-4z" fill="#22C55E"/>
+                                <circle cx="20" cy="42" r="3" fill="#22C55E"/>
+                                <circle cx="40" cy="42" r="3" fill="#22C55E"/>
+                                <path d="M25 30h10v2H25v-2z" fill="white"/>
+                                <path d="M25 33h10v2H25v-2z" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="upgrade-title">Get Upgrade</h3>
+                        <p class="upgrade-subtitle">Step to the next level, with more features.</p>
+                        <button class="upgrade-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-content">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 17A8 8 0 109 1a8 8 0 000 16z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Search by load type, origin, destination">
+                    </div>
+
+                    <!-- Filters & Sorting -->
+                    <div class="filters-sorting">
+                        <button class="filters-button">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            Filters
+                            <span class="filter-badge">0</span>
+                        </button>
+                        <div class="sorting-dropdown">
+                            <select class="sort-select">
+                                <option>Sort by: Date</option>
+                                <option>Sort by: Rate</option>
+                                <option>Sort by: Distance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="user-profile">
+                        <div class="profile-picture">
+                            <img
+  src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
+  alt="Profile"
+  width="32"
+  height="32"
+  style="border-radius: 50%; object-fit: cover;"
+/>
+
+                        </div>
+                        <span class="username">Nqobile</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Job Board Content -->
+            <section class="job-board">
+                <div class="job-board-content">
+                    <p class="load-count">We've found 523 loads!</p>
+                    
+                    <div class="load-cards">
+                        <!-- Load Card 1 -->
+                        <div class="load-card" data-load-id="1">
+                            <div class="load-posted-time">Posted 2 hours ago</div>
+                            <div class="load-card-content">
+                                <div class="load-card-left">
+                                    <div class="company-icon">
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="40" height="40" rx="8" fill="#E8F5E8"/>
+                                            <path d="M8 20h24v8H8v-8zm2-6h20v4H10v-4z" fill="#22C55E"/>
+                                            <circle cx="12" cy="32" r="3" fill="#22C55E"/>
+                                            <circle cx="28" cy="32" r="3" fill="#22C55E"/>
+                                        </svg>
+                                    </div>
+                                    <div class="load-info">
+                                        <h3 class="load-title">Maize Grain Transport</h3>
+                                        <div class="load-tags">
+                                            <span class="load-tag">Dry Van</span>
+                                            <span class="load-tag">Agricultural</span>
+                                        </div>
+                                        <p class="load-route">Harare → Bulawayo</p>
+                                        <div class="load-details">
+                                            <span class="load-weight">25 tonnes</span>
+                                            <span class="load-distance">440 km</span>
+                                        </div>
+                                        <p class="load-description">Premium quality maize grain requiring temperature-controlled dry van transport. Load must be delivered within 48 hours to maintain freshness standards.</p>
+                                    </div>
+                                </div>
+                                <div class="load-card-right">
+                                    <div class="load-rate">$2,850 - $3,200</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load Card 2 -->
+                        <div class="load-card" data-load-id="2">
+                            <div class="load-posted-time">Posted 1 day ago</div>
+                            <div class="load-card-content">
+                                <div class="load-card-left">
+                                    <div class="company-icon">
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="40" height="40" rx="8" fill="#E8F5E8"/>
+                                            <path d="M10 15h20v12H10v-12zm2-4h16v3H12v-3z" fill="#22C55E"/>
+                                            <circle cx="14" cy="30" r="3" fill="#22C55E"/>
+                                            <circle cx="26" cy="30" r="3" fill="#22C55E"/>
+                                        </svg>
+                                    </div>
+                                    <div class="load-info">
+                                        <h3 class="load-title">Timber Logs Haulage</h3>
+                                        <div class="load-tags">
+                                            <span class="load-tag">Flatbed</span>
+                                            <span class="load-tag">Heavy Haul</span>
+                                        </div>
+                                        <p class="load-route">Mutare → Gweru</p>
+                                        <div class="load-details">
+                                            <span class="load-weight">35 tonnes</span>
+                                            <span class="load-distance">320 km</span>
+                                        </div>
+                                        <p class="load-description">Freshly cut pine timber logs requiring specialized flatbed transport with securement equipment. Driver must have experience with heavy timber loads.</p>
+                                    </div>
+                                </div>
+                                <div class="load-card-right">
+                                    <div class="load-rate">$4,200 - $4,800</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load Card 3 -->
+                        <div class="load-card" data-load-id="3">
+                            <div class="load-posted-time">Posted 3 hours ago</div>
+                            <div class="load-card-content">
+                                <div class="load-card-left">
+                                    <div class="company-icon">
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="40" height="40" rx="8" fill="#E8F5E8"/>
+                                            <path d="M12 12h16v16H12v-16zm2-4h12v3H14v-3z" fill="#22C55E"/>
+                                            <circle cx="16" cy="30" r="3" fill="#22C55E"/>
+                                            <circle cx="24" cy="30" r="3" fill="#22C55E"/>
+                                            <path d="M20 20h4v2h-4v-2z" fill="#16A34A"/>
+                                        </svg>
+                                    </div>
+                                    <div class="load-info">
+                                        <h3 class="load-title">Gold Bullion Transport</h3>
+                                        <div class="load-tags">
+                                            <span class="load-tag">Secure</span>
+                                            <span class="load-tag">High Value</span>
+                                        </div>
+                                        <p class="load-route">Kadoma → Harare</p>
+                                        <div class="load-details">
+                                            <span class="load-weight">2 tonnes</span>
+                                            <span class="load-distance">150 km</span>
+                                        </div>
+                                        <p class="load-description">High-security gold bullion transport requiring armored vehicle and certified security personnel. Background check and security clearance mandatory for this load.</p>
+                                    </div>
+                                </div>
+                                <div class="load-card-right">
+                                    <div class="load-rate">$8,500 - $12,000</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load Card 4 -->
+                        <div class="load-card" data-load-id="4">
+                            <div class="load-posted-time">Posted 4 hours ago</div>
+                            <div class="load-card-content">
+                                <div class="load-card-left">
+                                    <div class="company-icon">
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="40" height="40" rx="8" fill="#E8F5E8"/>
+                                            <path d="M8 18h24v8H8v-8zm2-6h20v4H10v-4z" fill="#22C55E"/>
+                                            <circle cx="12" cy="30" r="3" fill="#22C55E"/>
+                                            <circle cx="28" cy="30" r="3" fill="#22C55E"/>
+                                            <path d="M16 22h8v2h-8v-2z" fill="#16A34A"/>
+                                        </svg>
+                                    </div>
+                                    <div class="load-info">
+                                        <h3 class="load-title">Fresh Produce Delivery</h3>
+                                        <div class="load-tags">
+                                            <span class="load-tag">Refrigerated</span>
+                                            <span class="load-tag">Perishable</span>
+                                        </div>
+                                        <p class="load-route">Chipinge → Harare</p>
+                                        <div class="load-details">
+                                            <span class="load-weight">18 tonnes</span>
+                                            <span class="load-distance">280 km</span>
+                                        </div>
+                                        <p class="load-description">Mixed fresh produce including berries, leafy greens, and citrus fruits requiring temperature-controlled refrigerated transport. Strict temperature monitoring throughout transit.</p>
+                                    </div>
+                                </div>
+                                <div class="load-card-right">
+                                    <div class="load-rate">$3,100 - $3,600</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load Card 5 -->
+                        <div class="load-card" data-load-id="5">
+                            <div class="load-posted-time">Posted 6 hours ago</div>
+                            <div class="load-card-content">
+                                <div class="load-card-left">
+                                    <div class="company-icon">
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="40" height="40" rx="8" fill="#E8F5E8"/>
+                                            <path d="M10 14h20v14H10v-14zm2-4h16v3H12v-3z" fill="#22C55E"/>
+                                            <circle cx="14" cy="30" r="3" fill="#22C55E"/>
+                                            <circle cx="26" cy="30" r="3" fill="#22C55E"/>
+                                            <rect x="16" y="18" width="8" height="6" rx="1" fill="#16A34A"/>
+                                        </svg>
+                                    </div>
+                                    <div class="load-info">
+                                        <h3 class="load-title">Construction Equipment</h3>
+                                        <div class="load-tags">
+                                            <span class="load-tag">Flatbed</span>
+                                            <span class="load-tag">Oversized</span>
+                                        </div>
+                                        <p class="load-route">Chinhoyi → Bulawayo</p>
+                                        <div class="load-details">
+                                            <span class="load-weight">45 tonnes</span>
+                                            <span class="load-distance">380 km</span>
+                                        </div>
+                                        <p class="load-description">Heavy construction machinery including excavators and bulldozers requiring specialized flatbed with hydraulic ramps. Permits and escort vehicles arranged by shipper.</p>
+                                    </div>
+                                </div>
+                                <div class="load-card-right">
+                                    <div class="load-rate">$5,800 - $6,500</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Load Detail Modal -->
+    <div id="loadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Load Details</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Load Images -->
+                <div class="load-images">
+                    <div class="main-image">
+                        <img id="mainLoadImage" src="" alt="Load Image" />
+                    </div>
+                    <div class="image-thumbnails">
+                        <img class="thumbnail active" src="" alt="Load Image 1" />
+                        <img class="thumbnail" src="" alt="Load Image 2" />
+                        <img class="thumbnail" src="" alt="Load Image 3" />
+                    </div>
+                </div>
+
+                <!-- Load Information -->
+                <div class="load-details-section">
+                    <div class="load-basic-info">
+                        <h3 id="modalLoadTitle">Load Title</h3>
+                        <div class="load-meta">
+                            <span id="modalLoadRoute" class="route-info">Route</span>
+                            <span id="modalLoadWeight" class="weight-info">Weight</span>
+                            <span id="modalLoadDistance" class="distance-info">Distance</span>
+                        </div>
+                        <div class="load-tags-modal">
+                            <span id="modalLoadTag1" class="load-tag-modal">Tag 1</span>
+                            <span id="modalLoadTag2" class="load-tag-modal">Tag 2</span>
+                        </div>
+                    </div>
+
+                    <div class="load-rate-section">
+                        <div id="modalLoadRate" class="rate-display">Rate</div>
+                        <button class="bid-button">Place Bid</button>
+                    </div>
+                </div>
+
+                <!-- Full Description -->
+                <div class="description-section">
+                    <h4>Full Description</h4>
+                    <p id="modalLoadDescription">Load description will appear here...</p>
+                </div>
+
+                <!-- Poster Information -->
+                <div class="poster-section">
+                    <h4>Load Poster</h4>
+                    <div class="poster-info">
+                        <div class="poster-avatar">
+                            <img id="posterAvatar" src="" alt="Poster Avatar" />
+                        </div>
+                        <div class="poster-details">
+                            <h5 id="posterName">Company Name</h5>
+                            <div class="poster-rating">
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <span id="posterRating" class="rating-text">4.8/5</span>
+                                <span id="posterReviews" class="reviews-count">(127 reviews)</span>
+                            </div>
+                            <div class="poster-stats">
+                                <span class="stat">Loads Posted: <strong id="loadsPosted">45</strong></span>
+                                <span class="stat">Success Rate: <strong id="successRate">98%</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonials -->
+                <div class="testimonials-section">
+                    <h4>Testimonials</h4>
+                    <div class="testimonials-grid">
+                        <div class="testimonial">
+                            <div class="testimonial-header">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%2322C55E'/%3E%3Ccircle cx='16' cy='12' r='5' fill='white'/%3E%3Cpath d='M8 26c0-4.4 3.6-8 8-8s8 3.6 8 8' fill='white'/%3E%3C/svg%3E" alt="Driver" class="testimonial-avatar" />
+                                <div class="testimonial-info">
+                                    <h6>John M.</h6>
+                                    <div class="testimonial-rating">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>"Excellent communication and fair rates. Load was exactly as described and delivered on time."</p>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <div class="testimonial-header">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%2322C55E'/%3E%3Ccircle cx='16' cy='12' r='5' fill='white'/%3E%3Cpath d='M8 26c0-4.4 3.6-8 8-8s8 3.6 8 8' fill='white'/%3E%3C/svg%3E" alt="Driver" class="testimonial-avatar" />
+                                <div class="testimonial-info">
+                                    <h6>Sarah K.</h6>
+                                    <div class="testimonial-rating">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>"Professional company with great loads. Always pays on time and treats drivers well."</p>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <div class="testimonial-header">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%2322C55E'/%3E%3Ccircle cx='16' cy='12' r='5' fill='white'/%3E%3Cpath d='M8 26c0-4.4 3.6-8 8-8s8 3.6 8 8' fill='white'/%3E%3C/svg%3E" alt="Driver" class="testimonial-avatar" />
+                                <div class="testimonial-info">
+                                    <h6>Mike R.</h6>
+                                    <div class="testimonial-rating">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>"Reliable shipper with consistent loads. Highly recommend working with them."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
