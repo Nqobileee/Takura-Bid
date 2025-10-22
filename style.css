@@ -774,8 +774,8 @@ body {
     position: fixed;
     right: 20px;
     bottom: 20px;
-    width: 600px;
-    height: 620px;
+    width: 700px;
+    height: 520px;
     background: var(--card-bg);
     border: 1px solid var(--border-outline);
     border-radius: var(--radius-lg);
@@ -2043,5 +2043,6 @@ select:focus,
         height: 200px;
     }
 }
+
 
 
