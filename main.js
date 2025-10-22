@@ -308,7 +308,7 @@ function initializeCharts() {
         new Chart(jobsCtx, {
             type: 'bar',
             data: {
-                labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                labels: ['Mar','Apr','May','Jun','Jul','Aug','Sep'],
                 datasets: [{
                     label: 'Jobs Completed',
                     data: [4, 5, 3, 6, 2, 3, 0],
@@ -964,5 +964,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
 
 
