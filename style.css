@@ -1039,8 +1039,8 @@ body {
     }
     
     .chat-popup {
-        width: 420px;
-        height: 450px;
+        width: 620px;
+        height: 650px;
         right: 10px;
         bottom: 10px;
     }
@@ -2043,3 +2043,4 @@ select:focus,
         height: 200px;
     }
 }
+
