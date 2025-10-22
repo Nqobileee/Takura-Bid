@@ -81,7 +81,7 @@ This architecture supports scalability, modular development, and secure communic
 | Name | Role |
 |------|------|
 | Edith N. Muyambiri | Frontend Development / UI Design |
-| Matips B Machangu | Backend Development |
+| Matipa B Machangu | Backend Development |
 | Nyasha Nyekete | Database & API Integration |
 | Princess B Kwaniya | Documentation & Testing |
 
