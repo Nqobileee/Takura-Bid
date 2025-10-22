@@ -283,7 +283,8 @@ function initializeNavigation() {
 function initializeAnalytics() {
     const clicks = 1284;
     const jobs = 236;
-    const total = 12640;
+    // Show a monthly earnings example within requested range ($2,000 - $4,000)
+    const total = 3200;
     const rating = 4.7;
     const elClicks = document.getElementById('profileClicks');
     const elJobs = document.getElementById('jobsWorked');
@@ -343,7 +344,8 @@ function initializeCharts() {
                 labels: ['Apr','May','Jun','Jul','Aug','Sep'],
                 datasets: [{
                     label: 'Monthly Earnings',
-                    data: [1200, 1500, 1800, 1400, 1600, 1900],
+                    // Example monthly earnings within $2,000 - $4,000 range
+                    data: [2200, 2600, 3000, 2800, 3100, 3200],
                     borderColor: '#391b49',
                     backgroundColor: 'rgba(57, 27, 73, 0.1)',
                     borderWidth: 3,
@@ -376,35 +378,7 @@ function initializeCharts() {
             }
         });
     }
-    const finCtx = document.getElementById('financesEarningsChart');
-    if (finCtx) {
-        new Chart(finCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Refrigerated','Dry Van','Flatbed','Tanker'],
-                datasets: [{
-                    data: [35, 25, 20, 20],
-                    backgroundColor: ['#391b49','#2d1538','#4a2c5a','#5d3a6b'],
-                    borderWidth: 0,
-                    cutout: '60%'
-                }]
-            },
-            options: { 
-                responsive: true, 
-                maintainAspectRatio: false,
-                plugins: { 
-                    legend: { 
-                        position: 'bottom',
-                        labels: {
-                            padding: 15,
-                            usePointStyle: true,
-                            font: { size: 12 }
-                        }
-                    } 
-                }
-            }
-        });
-    }
+    // Finances chart removed - replaced by a static summary in the modal.
 }
 
 // Finances modal
@@ -415,7 +389,8 @@ function initializeFinancesModal() {
     if (!trigger || !modal || !closeBtn) return;
     trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        const total = 12640;
+        // Use monthly/summary total within $2k-$4k range to match dashboard example
+        const total = 3200;
         const finTotal = document.getElementById('financesTotal');
         if (finTotal) finTotal.textContent = `$${total.toLocaleString()}`;
         modal.classList.add('show');
