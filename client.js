@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFinancesModal();
     initializePortfolioLightbox();
     initializeChat();
+    initializePostLoadForm();
     // Populate drivers list for client
     populateDriversList();
 });
@@ -261,8 +262,8 @@ function handleUpgradeClick() {
 
 // Navigation initializer
 function initializeNavigation() {
-    // Show dashboard by default if present
-    const defaultSection = document.getElementById('dashboard');
+    // Show drivers section by default
+    const defaultSection = document.getElementById('drivers');
     if (defaultSection) {
         document.querySelectorAll('.page-section').forEach(sec => {
             sec.style.display = (sec === defaultSection) ? 'block' : 'none';
@@ -589,18 +590,7 @@ function initializeCharts() {
         });
     }
 
-    // Small finances donut (reuse existing canvas if present)
-    const finCtx = document.getElementById('financesEarningsChart');
-    if (finCtx) {
-        new Chart(finCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Refrigerated','Dry Van','Flatbed','Tanker'],
-                datasets: [{ data: [35, 25, 20, 20], backgroundColor: ['#391b49','#2d1538','#4a2c5a','#5d3a6b'], borderWidth: 0, cutout: '60%' }]
-            },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 15, usePointStyle: true, font: { size: 12 } } } } }
-        });
-    }
+    // Chart initialization removed - finances section now uses text summary instead of chart
 }
 
 // Finances modal
@@ -608,18 +598,38 @@ function initializeFinancesModal() {
     const trigger = document.querySelector('[data-open-finances]');
     const modal = document.getElementById('financesModal');
     const closeBtn = modal ? modal.querySelector('[data-close-finances]') : null;
+    const downloadBtn = modal ? modal.querySelector('.download-invoice') : null;
+    
     if (!trigger || !modal || !closeBtn) return;
+    
     trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        const total = 5600;
+        const total = 3200;
         const finTotal = document.getElementById('financesTotal');
         if (finTotal) finTotal.textContent = `$${total.toLocaleString()}`;
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
-        setTimeout(initializeCharts, 50);
     });
-    closeBtn.addEventListener('click', () => { modal.classList.remove('show'); document.body.style.overflow = 'auto'; });
-    modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('show'); document.body.style.overflow = 'auto'; } });
+    
+    closeBtn.addEventListener('click', () => { 
+        modal.classList.remove('show'); 
+        document.body.style.overflow = 'auto'; 
+    });
+    
+    modal.addEventListener('click', (e) => { 
+        if (e.target === modal) { 
+            modal.classList.remove('show'); 
+            document.body.style.overflow = 'auto'; 
+        } 
+    });
+    
+    // Download invoice functionality
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+            // Simulate download - in a real app, this would generate and download an actual invoice
+            alert('Invoice download functionality would be implemented here. This would generate a PDF with your financial summary.');
+        });
+    }
 }
 
 // Portfolio lightbox
@@ -1185,3 +1195,442 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Post A Load Form Functionality
+function initializePostLoadForm() {
+    const form = document.getElementById('postLoadForm');
+    const fileInput = document.getElementById('loadImages');
+    const fileUploadArea = document.getElementById('fileUploadArea');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    const resetButton = document.getElementById('resetForm');
+    const previewButton = document.getElementById('previewForm');
+    const submitButton = document.getElementById('submitForm');
+    
+    if (!form) return;
+    
+    // File upload functionality
+    if (fileInput && fileUploadArea) {
+        // Click to upload
+        fileUploadArea.addEventListener('click', () => fileInput.click());
+        
+        // Drag and drop
+        fileUploadArea.addEventListener('dragover', handleDragOver);
+        fileUploadArea.addEventListener('dragleave', handleDragLeave);
+        fileUploadArea.addEventListener('drop', handleDrop);
+        
+        // File selection
+        fileInput.addEventListener('change', handleFileSelect);
+    }
+    
+    // Form buttons
+    if (resetButton) {
+        resetButton.addEventListener('click', resetForm);
+    }
+    
+    if (previewButton) {
+        previewButton.addEventListener('click', previewForm);
+    }
+    
+    if (submitButton) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
+    
+    // Form validation
+    const requiredFields = form.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', () => validateField(field));
+        field.addEventListener('input', () => clearFieldError(field));
+    });
+    
+    // Set minimum date to today
+    const dateInput = document.getElementById('shippingDateTime');
+    if (dateInput) {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.min = tomorrow.toISOString().slice(0, 16);
+    }
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('dragover');
+}
+
+function handleDragLeave(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('dragover');
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('dragover');
+    
+    const files = Array.from(e.dataTransfer.files);
+    const imageFiles = files.filter(file => file.type.startsWith('image/'));
+    
+    if (imageFiles.length > 0) {
+        handleFiles(imageFiles);
+    }
+}
+
+function handleFileSelect(e) {
+    const files = Array.from(e.target.files);
+    handleFiles(files);
+}
+
+function handleFiles(files) {
+    const imageFiles = files.filter(file => file.type.startsWith('image/'));
+    
+    imageFiles.forEach(file => {
+        if (file.size > 10 * 1024 * 1024) { // 10MB limit
+            alert(`File ${file.name} is too large. Maximum size is 10MB.`);
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            addImagePreview(e.target.result, file.name);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function addImagePreview(src, filename) {
+    const previewItem = document.createElement('div');
+    previewItem.className = 'image-preview-item';
+    
+    previewItem.innerHTML = `
+        <img src="${src}" alt="${filename}" />
+        <button type="button" class="image-preview-remove" onclick="removeImagePreview(this)">&times;</button>
+    `;
+    
+    imagePreviewContainer.appendChild(previewItem);
+}
+
+function removeImagePreview(button) {
+    button.parentElement.remove();
+}
+
+function validateField(field) {
+    const value = field.value.trim();
+    const fieldName = field.name;
+    const errorElement = document.getElementById(fieldName + 'Error');
+    
+    let isValid = true;
+    let errorMessage = '';
+    
+    if (field.hasAttribute('required') && !value) {
+        isValid = false;
+        errorMessage = 'This field is required';
+    } else if (fieldName === 'loadWeight' && value && (isNaN(value) || parseFloat(value) <= 0)) {
+        isValid = false;
+        errorMessage = 'Please enter a valid weight';
+    } else if (fieldName === 'loadDistance' && value && (isNaN(value) || parseFloat(value) <= 0)) {
+        isValid = false;
+        errorMessage = 'Please enter a valid distance';
+    } else if (fieldName === 'shippingDateTime' && value) {
+        const selectedDate = new Date(value);
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        
+        if (selectedDate < tomorrow) {
+            isValid = false;
+            errorMessage = 'Shipping date must be at least tomorrow';
+        }
+    }
+    
+    if (errorElement) {
+        if (isValid) {
+            errorElement.classList.remove('show');
+            errorElement.textContent = '';
+        } else {
+            errorElement.classList.add('show');
+            errorElement.textContent = errorMessage;
+        }
+    }
+    
+    return isValid;
+}
+
+function clearFieldError(field) {
+    const fieldName = field.name;
+    const errorElement = document.getElementById(fieldName + 'Error');
+    
+    if (errorElement) {
+        errorElement.classList.remove('show');
+        errorElement.textContent = '';
+    }
+}
+
+function validateForm() {
+    const form = document.getElementById('postLoadForm');
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        if (!validateField(field)) {
+            isValid = false;
+        }
+    });
+    
+    return isValid;
+}
+
+function resetForm() {
+    const form = document.getElementById('postLoadForm');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    
+    if (form) {
+        form.reset();
+    }
+    
+    if (imagePreviewContainer) {
+        imagePreviewContainer.innerHTML = '';
+    }
+    
+    // Clear all error messages
+    const errorElements = form.querySelectorAll('.form-error');
+    errorElements.forEach(error => {
+        error.classList.remove('show');
+        error.textContent = '';
+    });
+    
+    console.log('Form reset');
+}
+
+function previewForm() {
+    if (!validateForm()) {
+        alert('Please fill in all required fields correctly before previewing.');
+        return;
+    }
+    
+    const formData = getFormData();
+    showPreviewModal(formData);
+}
+
+function getFormData() {
+    const form = document.getElementById('postLoadForm');
+    const formData = new FormData(form);
+    
+    return {
+        title: formData.get('loadTitle'),
+        description: formData.get('loadDescription'),
+        type: formData.get('loadType'),
+        weight: formData.get('loadWeight'),
+        distance: formData.get('loadDistance'),
+        specialRequirements: formData.get('specialRequirements'),
+        shippingDateTime: formData.get('shippingDateTime'),
+        images: Array.from(imagePreviewContainer.children).map(item => ({
+            src: item.querySelector('img').src,
+            alt: item.querySelector('img').alt
+        }))
+    };
+}
+
+function showPreviewModal(data) {
+    const modal = document.getElementById('loadPreviewModal');
+    const previewContent = document.getElementById('previewContent');
+    
+    if (!modal || !previewContent) return;
+    
+    const typeLabels = {
+        'general': 'General Cargo',
+        'construction': 'Construction Materials',
+        'agricultural': 'Agricultural Products',
+        'furniture': 'Furniture & Appliances',
+        'vehicles': 'Vehicles',
+        'hazardous': 'Hazardous Materials',
+        'refrigerated': 'Refrigerated Goods',
+        'fragile': 'Fragile Items',
+        'oversized': 'Oversized Load',
+        'other': 'Other'
+    };
+    
+    const formatDateTime = (dateTimeString) => {
+        const date = new Date(dateTimeString);
+        return date.toLocaleDateString() + ' at ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    };
+    
+    previewContent.innerHTML = `
+        <div class="preview-header">
+            <div class="preview-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="white"/>
+                </svg>
+            </div>
+            <div>
+                <h3 class="preview-title">${data.title}</h3>
+                <div class="preview-meta">
+                    <span class="preview-tag">${typeLabels[data.type] || data.type}</span>
+                    <span class="preview-tag">${data.weight} kg</span>
+                    <span class="preview-tag">${data.distance} km</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="preview-details">
+            <div class="preview-detail">
+                <div class="preview-detail-label">Load Type</div>
+                <div class="preview-detail-value">${typeLabels[data.type] || data.type}</div>
+            </div>
+            <div class="preview-detail">
+                <div class="preview-detail-label">Weight</div>
+                <div class="preview-detail-value">${data.weight} kg</div>
+            </div>
+            <div class="preview-detail">
+                <div class="preview-detail-label">Distance</div>
+                <div class="preview-detail-value">${data.distance} km</div>
+            </div>
+            <div class="preview-detail">
+                <div class="preview-detail-label">Shipping Date</div>
+                <div class="preview-detail-value">${formatDateTime(data.shippingDateTime)}</div>
+            </div>
+        </div>
+        
+        <div class="preview-description">
+            <h4>Description</h4>
+            <p>${data.description}</p>
+        </div>
+        
+        ${data.specialRequirements ? `
+        <div class="preview-description">
+            <h4>Special Requirements</h4>
+            <p>${data.specialRequirements}</p>
+        </div>
+        ` : ''}
+        
+        ${data.images.length > 0 ? `
+        <div class="preview-description">
+            <h4>Images (${data.images.length})</h4>
+            <div class="preview-images">
+                ${data.images.map(img => `<img src="${img.src}" alt="${img.alt}" class="preview-image" />`).join('')}
+            </div>
+        </div>
+        ` : ''}
+    `;
+    
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    // Set up modal close events
+    const closeBtn = document.getElementById('previewModalClose');
+    const editBtn = document.getElementById('editPreview');
+    const confirmBtn = document.getElementById('confirmPost');
+    
+    if (closeBtn) {
+        closeBtn.onclick = () => closePreviewModal();
+    }
+    
+    if (editBtn) {
+        editBtn.onclick = () => {
+            closePreviewModal();
+        };
+    }
+    
+    if (confirmBtn) {
+        confirmBtn.onclick = () => {
+            closePreviewModal();
+            submitForm();
+        };
+    }
+    
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            closePreviewModal();
+        }
+    };
+}
+
+function closePreviewModal() {
+    const modal = document.getElementById('loadPreviewModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+        alert('Please fill in all required fields correctly.');
+        return;
+    }
+    
+    submitForm();
+}
+
+function submitForm() {
+    const formData = getFormData();
+    
+    // Simulate form submission
+    console.log('Submitting load:', formData);
+    
+    // Show loading state
+    const submitButton = document.getElementById('submitForm');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Posting...';
+    submitButton.disabled = true;
+    
+    // Simulate API call
+    setTimeout(() => {
+        // Reset button
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+        
+        // Show success modal
+        showSuccessModal();
+        
+        // Reset form
+        resetForm();
+    }, 2000);
+}
+
+function showSuccessModal() {
+    const modal = document.getElementById('successModal');
+    
+    if (!modal) return;
+    
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    // Set up modal close events
+    const closeBtn = document.getElementById('successModalClose');
+    const viewLoadsBtn = document.getElementById('viewLoads');
+    const postAnotherBtn = document.getElementById('postAnother');
+    
+    if (closeBtn) {
+        closeBtn.onclick = () => closeSuccessModal();
+    }
+    
+    if (viewLoadsBtn) {
+        viewLoadsBtn.onclick = () => {
+            closeSuccessModal();
+            // Navigate to loads view (implement as needed)
+            console.log('Navigate to loads view');
+        };
+    }
+    
+    if (postAnotherBtn) {
+        postAnotherBtn.onclick = () => {
+            closeSuccessModal();
+            // Form is already reset, just focus on first field
+            const firstField = document.getElementById('loadTitle');
+            if (firstField) {
+                firstField.focus();
+            }
+        };
+    }
+    
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            closeSuccessModal();
+        }
+    };
+}
+
+function closeSuccessModal() {
+    const modal = document.getElementById('successModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
