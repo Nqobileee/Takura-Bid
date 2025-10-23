@@ -41,7 +41,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#post-load" class="nav-link" data-section="post-load">
                                 <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="1.5" fill="none"/>
                                     <path d="M7 9h6M7 13h3" stroke="currentColor" stroke-width="1.5"/>
@@ -133,6 +133,149 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Post A Load Section -->
+            <section id="post-load" class="page-section" style="display:none;">
+                <div class="post-load-container">
+                    <!-- Header Section -->
+                    <div class="post-load-header">
+                        <div class="header-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="24" fill="#391b49"/>
+                                <path d="M12 27h24v9H12v-9zm3-6h18v4H15v-4z" fill="white"/>
+                                <circle cx="18" cy="39" r="3" fill="white"/>
+                                <circle cx="30" cy="39" r="3" fill="white"/>
+                                <path d="M21 18h6v3h-6v-3z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="header-content">
+                            <h1>Post a Load</h1>
+                            <p>Create a new load posting to find the perfect driver for your logistics needs</p>
+                        </div>
+                    </div>
+
+                    <!-- Form Section -->
+                    <div class="post-load-form-container">
+                        <form id="postLoadForm" class="post-load-form">
+                            <!-- Load Title -->
+                            <div class="form-group">
+                                <label for="loadTitle" class="form-label">
+                                    <span class="label-text">Load Title</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="loadTitle" name="loadTitle" class="form-input" placeholder="Enter a descriptive title for your load" required>
+                                <div class="form-error" id="loadTitleError"></div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label for="loadDescription" class="form-label">
+                                    <span class="label-text">Description</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <textarea id="loadDescription" name="loadDescription" class="form-textarea" rows="4" placeholder="Provide detailed information about your load, including any special handling requirements" required></textarea>
+                                <div class="form-error" id="loadDescriptionError"></div>
+                            </div>
+
+                            <!-- Type of Load and Weight Row -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="loadType" class="form-label">
+                                        <span class="label-text">Type of Load</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <select id="loadType" name="loadType" class="form-select" required>
+                                        <option value="">Select load type</option>
+                                        <option value="general">General Cargo</option>
+                                        <option value="construction">Construction Materials</option>
+                                        <option value="agricultural">Agricultural Products</option>
+                                        <option value="furniture">Furniture & Appliances</option>
+                                        <option value="vehicles">Vehicles</option>
+                                        <option value="hazardous">Hazardous Materials</option>
+                                        <option value="refrigerated">Refrigerated Goods</option>
+                                        <option value="fragile">Fragile Items</option>
+                                        <option value="oversized">Oversized Load</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <div class="form-error" id="loadTypeError"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="loadWeight" class="form-label">
+                                        <span class="label-text">Weight (kg)</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="number" id="loadWeight" name="loadWeight" class="form-input" placeholder="0" min="1" step="0.1" required>
+                                    <div class="form-error" id="loadWeightError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Distance and Special Requirements Row -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="loadDistance" class="form-label">
+                                        <span class="label-text">Distance (km)</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="number" id="loadDistance" name="loadDistance" class="form-input" placeholder="0" min="1" step="0.1" required>
+                                    <div class="form-error" id="loadDistanceError"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="specialRequirements" class="form-label">
+                                        <span class="label-text">Special Requirements</span>
+                                    </label>
+                                    <textarea id="specialRequirements" name="specialRequirements" class="form-textarea" rows="3" placeholder="Any special handling, timing, or delivery requirements"></textarea>
+                                    <div class="form-error" id="specialRequirementsError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Date and Time -->
+                            <div class="form-group">
+                                <label for="shippingDateTime" class="form-label">
+                                    <span class="label-text">Shipping Date and Time</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="datetime-local" id="shippingDateTime" name="shippingDateTime" class="form-input" required>
+                                <div class="form-error" id="shippingDateTimeError"></div>
+                            </div>
+
+                            <!-- Load Images -->
+                            <div class="form-group">
+                                <label for="loadImages" class="form-label">
+                                    <span class="label-text">Load Images</span>
+                                    <span class="optional">(Optional)</span>
+                                </label>
+                                <div class="file-upload-container">
+                                    <input type="file" id="loadImages" name="loadImages" class="file-input" multiple accept="image/*">
+                                    <div class="file-upload-area" id="fileUploadArea">
+                                        <div class="upload-icon">
+                                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 2L20 6H18V12H14V6H12L16 2Z" fill="#391b49"/>
+                                                <path d="M8 14V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V14H8Z" fill="#391b49"/>
+                                            </svg>
+                                        </div>
+                                        <div class="upload-text">
+                                            <p class="upload-primary">Click to upload images</p>
+                                            <p class="upload-secondary">or drag and drop files here</p>
+                                            <p class="upload-info">PNG, JPG, GIF up to 10MB each</p>
+                                        </div>
+                                    </div>
+                                    <div class="image-preview-container" id="imagePreviewContainer"></div>
+                                </div>
+                                <div class="form-error" id="loadImagesError"></div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="form-actions">
+                                <button type="button" id="resetForm" class="btn-secondary">Reset Form</button>
+                                <button type="button" id="previewForm" class="btn-preview">Preview Post</button>
+                                <button type="submit" id="submitForm" class="btn-primary">Post Load</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
             <!-- Header -->
             <header class="main-header">
                 <div class="header-content">
@@ -196,8 +339,8 @@
             <div class="modal-body">
                 <div class="finances-summary">
                     <div class="total-earnings-card">
-                        <h3>Total Money Spent</h3>
-                        <div class="earnings-amount" id="financesTotal">$5,600</div>
+                        <h3>Total Earnings</h3>
+                        <div class="earnings-amount" id="financesTotal">$3,200</div>
                         <div class="earnings-period">All Time</div>
                     </div>
                 </div>
@@ -206,7 +349,8 @@
                     <div class="finances-card">
                         <h4>Earnings by Job Type</h4>
                         <div class="chart-wrapper-small">
-                            <canvas id="financesEarningsChart" height="150"></canvas>
+                            <p style="color:var(--text-secondary);font-size:14px;">Summary: Earnings are shown as per-kilometre rates. For detailed breakdowns, export CSV from the dashboard.</p>
+                            <button class="download-invoice" style="background-color: #391b49; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px;">Download Invoice</button>
                         </div>
                     </div>
                     <div class="finances-card">
@@ -218,11 +362,11 @@
                                 <div>Amount</div>
                                 <div>Status</div>
                             </div>
-                            <div class="fin-row"><div>2025-10-18</div><div>Construction</div><div>$6,200</div><div>Paid</div></div>
-                            <div class="fin-row"><div>2025-10-12</div><div>Timber Logs</div><div>$4,500</div><div>Paid</div></div>
-                            <div class="fin-row"><div>2025-10-09</div><div>Gold Bullion</div><div>$9,800</div><div>Paid</div></div>
-                            <div class="fin-row"><div>2025-10-05</div><div>Fresh Produce</div><div>$3,250</div><div>Paid</div></div>
-                            <div class="fin-row"><div>2025-10-01</div><div>Maize Grain</div><div>$2,850</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-18</div><div>Construction</div><div>$1,650</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-12</div><div>Timber Logs</div><div>$1,800</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-09</div><div>Gold Bullion</div><div>$1,200</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-05</div><div>Fresh Produce</div><div>$1,500</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-01</div><div>Maize Grain</div><div>$1,750</div><div>Paid</div></div>
                         </div>
                     </div>
                 </div>
@@ -256,6 +400,51 @@
                 <div class="chat-input-area">
                     <input id="chatInput" type="text" placeholder="Type a message..." />
                     <button id="chatSend" class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Preview Modal -->
+    <div id="loadPreviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Preview Your Load Post</h2>
+                <button class="modal-close" id="previewModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-content" id="previewContent">
+                    <!-- Preview content will be populated by JavaScript -->
+                </div>
+                <div class="preview-actions">
+                    <button type="button" id="editPreview" class="btn-secondary">Edit</button>
+                    <button type="button" id="confirmPost" class="btn-primary">Confirm & Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Load Posted Successfully!</h2>
+                <button class="modal-close" id="successModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-content">
+                    <div class="success-icon">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="32" fill="#10B981"/>
+                            <path d="M20 32L28 40L44 24" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Your load has been posted successfully!</h3>
+                    <p>Drivers will now be able to see your load and submit bids. You'll receive notifications when drivers show interest.</p>
+                    <div class="success-actions">
+                        <button type="button" id="viewLoads" class="btn-primary">View My Loads</button>
+                        <button type="button" id="postAnother" class="btn-secondary">Post Another Load</button>
+                    </div>
                 </div>
             </div>
         </div>
