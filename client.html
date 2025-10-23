@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakuraBid - Client Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="client.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar Navigation Panel -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <!-- Logo Section -->
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="16" fill="#391b49"/>
+                            <path d="M8 18h16v6H8v-6zm2-4h12v3H10v-3z" fill="white"/>
+                            <circle cx="12" cy="26" r="2" fill="white"/>
+                            <circle cx="20" cy="26" r="2" fill="white"/>
+                            <path d="M14 12h4v2h-4v-2z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">TakuraBid</span>
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#drivers" class="nav-link active">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6 6a1 1 0 01-1.414 0l-6-6A1 1 0 013 6.586V4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                <span>Drivers</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M7 9h6M7 13h3" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <span>Post A Load</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-open-finances="true">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zM4 7h12v9a1 1 0 01-1 1H5a1 1 0 01-1-1V7z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                <span>Finances</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-open-chat="true">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M15 7v2a3 3 0 003 3v2a1 1 0 01-1 1h-2l-3 3v-3h-2a3 3 0 01-3-3V9a3 3 0 013-3h7z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                <span>Messages</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 3h14v14H3V3z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M9 9l2 2 4-4" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Upgrade Section -->
+                <div class="upgrade-section">
+                    <div class="upgrade-card">
+                        <div class="upgrade-illustration">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="30" cy="30" r="30" fill="#f8f4f9"/>
+                                <path d="M15 25h30v15H15v-15zm3-6h24v4H18v-4z" fill="#391b49"/>
+                                <circle cx="20" cy="42" r="3" fill="#391b49"/>
+                                <circle cx="40" cy="42" r="3" fill="#391b49"/>
+                                <path d="M25 30h10v2H25v-2z" fill="white"/>
+                                <path d="M25 33h10v2H25v-2z" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="upgrade-title">Get Upgrade</h3>
+                        <p class="upgrade-subtitle">Step to the next level, with more features.</p>
+                        <button class="upgrade-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Drivers Landing Section -->
+            <section id="drivers" class="page-section">
+                <div class="dashboard-content">
+                    <div class="dashboard-header">
+                        <h1>Welcome Back Tadisa</h1>
+                        <p>Select your Driver for your next Load Now!</p>
+                        <button class="post-load-button glow">Post A Load</button>
+                    </div>
+                    
+                    <div class="drivers-grid" id="driversList">
+                        <!-- Driver cards will be populated here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="page-section" style="display:none;">
+                <div class="dashboard-content">
+                    <div class="dashboard-header">
+                        <h1>Client Dashboard</h1>
+                        <p>Overview of your posted jobs and spending.</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <!-- Stats grid content -->
+                    </div>
+                    
+                    <div class="charts-container">
+                        <!-- Charts content -->
+                    </div>
+                </div>
+            </section>
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-content">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 17A8 8 0 109 1a8 8 0 000 16z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Search by load type, origin, destination">
+                    </div>
+
+                    <!-- Filters & Sorting -->
+                    <div class="filters-sorting">
+                        <button class="filters-button">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            Filters
+                            <span class="filter-badge">0</span>
+                        </button>
+                        <div class="sorting-dropdown">
+                            <select class="sort-select">
+                                <option>Sort by: Date</option>
+                                <option>Sort by: Rate</option>
+                                <option>Sort by: Distance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="user-profile">
+                        <div class="profile-picture">
+                            <img
+  src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHNob3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
+  alt="Profile"
+  width="32"
+  height="32"
+  style="border-radius: 50%; object-fit: cover;"
+/>
+
+                        </div>
+                        <span class="username">Nqobile</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+                        
+                    
+
+
+
+    <!-- Finances Modal -->
+    <div id="financesModal" class="modal">
+        <div class="modal-content finances-modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Financial Overview</h2>
+                <button class="modal-close" data-close-finances>&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="finances-summary">
+                    <div class="total-earnings-card">
+                        <h3>Total Money Spent</h3>
+                        <div class="earnings-amount" id="financesTotal">$5,600</div>
+                        <div class="earnings-period">All Time</div>
+                    </div>
+                </div>
+                
+                <div class="finances-grid">
+                    <div class="finances-card">
+                        <h4>Earnings by Job Type</h4>
+                        <div class="chart-wrapper-small">
+                            <canvas id="financesEarningsChart" height="150"></canvas>
+                        </div>
+                    </div>
+                    <div class="finances-card">
+                        <h4>Recent Payments</h4>
+                        <div class="finances-table">
+                            <div class="fin-row fin-head">
+                                <div>Date</div>
+                                <div>Job</div>
+                                <div>Amount</div>
+                                <div>Status</div>
+                            </div>
+                            <div class="fin-row"><div>2025-10-18</div><div>Construction</div><div>$6,200</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-12</div><div>Timber Logs</div><div>$4,500</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-09</div><div>Gold Bullion</div><div>$9,800</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-05</div><div>Fresh Produce</div><div>$3,250</div><div>Paid</div></div>
+                            <div class="fin-row"><div>2025-10-01</div><div>Maize Grain</div><div>$2,850</div><div>Paid</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Lightbox -->
+    <div id="lightbox" class="lightbox" style="display:none;">
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="" />
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+        </div>
+    </div>
+
+    <!-- Chat Popup -->
+    <div id="chatPopup" class="chat-popup" style="display:none;">
+        <div class="chat-header">
+            <div class="chat-title">Messages</div>
+            <button class="chat-close" id="chatClose">&times;</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-list" id="chatList">
+                <!-- Chat list will be populated by JavaScript -->
+            </div>
+            <div class="chat-thread">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be populated by JavaScript -->
+                </div>
+                <div class="chat-input-area">
+                    <input id="chatInput" type="text" placeholder="Type a message..." />
+                    <button id="chatSend" class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
