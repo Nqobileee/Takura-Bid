@@ -322,10 +322,10 @@ const drivers = [
     {
         id: 'd2',
         name: 'Peter Chikomo',
-        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop',
+        avatar: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJsYWNrJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         truck: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop',
         description: 'Experienced flatbed operator with expertise in oversized loads and heavy machinery transport. Excellent safety record.',
-        company: 'Chiko Transport',
+        company: 'Chiko Ltd',
         verified: true,
         rating: 4.5,
         reviews: 89,
@@ -338,10 +338,10 @@ const drivers = [
     {
         id: 'd3',
         name: 'Sarah Mutasa',
-        avatar: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
+        avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YmxhY2slMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600',
         truck: 'https://images.unsplash.com/photo-1618582948377-cd7eb0e8cb14?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRydWNrfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         description: 'Certified hazmat transport specialist with focus on chemical and pharmaceutical deliveries. Perfect safety record.',
-        company: 'SafeChem Logistics',
+        company: 'SafeChem',
         verified: true,
         rating: 4.9,
         reviews: 156,
@@ -355,7 +355,7 @@ const drivers = [
         avatar: 'https://images.unsplash.com/photo-1565884280295-98eb83e41c65?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
         truck: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJ1Y2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
         description: 'Agricultural transport expert specializing in grain and fresh produce. Temperature-controlled cargo specialist.',
-        company: 'Farm Fresh Transport',
+        company: 'Farm Fresh',
         verified: true,
         rating: 4.7,
         reviews: 112,
@@ -383,7 +383,7 @@ const drivers = [
         avatar: 'https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJsYWNrJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         truck: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop',
         description: 'Mining equipment transport specialist. Experienced in handling oversized and heavy machinery for mining operations.',
-        company: 'Mining Logistics Co',
+        company: 'Mining Co',
         verified: true,
         rating: 4.6,
         reviews: 92,
@@ -423,9 +423,9 @@ const drivers = [
         id: 'd9',
         name: 'Ruth Shumba',
         avatar: 'https://images.unsplash.com/photo-1507152832244-10d45c7eda57?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600',
-        truck: 'https://images.unsplash.com/photo-1571989928541-674d0cf46c4a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRydWNrfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
+        truck: 'https://images.unsplash.com/photo-1528458538087-f58e9ad895da?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHRydWNrfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         description: 'Petroleum transport specialist with ADR certification. Expert in fuel and hazardous materials handling.',
-        company: 'Fuel Safe Transport',
+        company: 'Fuel Ltd',
         verified: true,
         rating: 4.9,
         reviews: 167,
@@ -439,7 +439,7 @@ const drivers = [
         avatar: 'https://images.unsplash.com/photo-1531945086322-64e2ffae14a6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJsYWNrJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         truck: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=800&auto=format&fit=crop',
         description: 'Refrigerated transport expert specializing in food and pharmaceutical products. Temperature monitoring certified.',
-        company: 'CoolFreight Systems',
+        company: 'CoolFreight',
         verified: true,
         rating: 4.7,
         reviews: 134,
@@ -1634,4 +1634,5 @@ function closeSuccessModal() {
     modal.classList.remove('show');
     document.body.style.overflow = 'auto';
 }
+
 
