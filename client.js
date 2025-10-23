@@ -304,8 +304,8 @@ const drivers = [
     {
         id: 'd1',
         name: 'Tendai Moyo',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop',
-        truck: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop',
+        avatar: 'https://images.unsplash.com/photo-1527465162445-a65a97288ce0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1086',
+        truck: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJ1Y2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
         description: 'Reliable long-haul driver with 12 years experience. Specialises in refrigerated and high-value cargo transport across Southern Africa.',
         company: 'Moyo Logistics',
         verified: true,
@@ -314,9 +314,9 @@ const drivers = [
         onTime: '98%',
         specialties: ['Refrigerated', 'High Value', 'Long Haul'],
         pastJobs: [
-            { title: 'Gold Bullion Transport', price: 9800, date: '2025-10-09' },
-            { title: 'Timber Logs Haulage', price: 4500, date: '2025-10-12' },
-            { title: 'Fresh Produce Delivery', price: 3250, date: '2025-10-15' }
+            { title: 'Gold Bullion Transport', price: 900, date: '2025-10-09' },
+            { title: 'Timber Logs Haulage', price: 450, date: '2025-10-12' },
+            { title: 'Fresh Produce Delivery', price: 320, date: '2025-10-15' }
         ]
     },
     {
@@ -338,8 +338,8 @@ const drivers = [
     {
         id: 'd3',
         name: 'Sarah Mutasa',
-        avatar: 'https://images.unsplash.com/photo-1598550880863-4e8aa3d0edb4?q=80&w=400&auto=format&fit=crop',
-        truck: 'https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=800&auto=format&fit=crop',
+        avatar: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
+        truck: 'https://images.unsplash.com/photo-1618582948377-cd7eb0e8cb14?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRydWNrfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         description: 'Certified hazmat transport specialist with focus on chemical and pharmaceutical deliveries. Perfect safety record.',
         company: 'SafeChem Logistics',
         verified: true,
@@ -352,8 +352,8 @@ const drivers = [
     {
         id: 'd4',
         name: 'John Banda',
-        avatar: 'https://images.unsplash.com/photo-1563511083331-7626824a4488?q=80&w=400&auto=format&fit=crop',
-        truck: 'https://images.unsplash.com/photo-1519037300104-c52e61b76ae3?q=80&w=800&auto=format&fit=crop',
+        avatar: 'https://images.unsplash.com/photo-1565884280295-98eb83e41c65?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
+        truck: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJ1Y2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
         description: 'Agricultural transport expert specializing in grain and fresh produce. Temperature-controlled cargo specialist.',
         company: 'Farm Fresh Transport',
         verified: true,
@@ -380,7 +380,7 @@ const drivers = [
     {
         id: 'd6',
         name: 'Michael Dube',
-        avatar: 'https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?q=80&w=400&auto=format&fit=crop',
+        avatar: 'https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJsYWNrJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         truck: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop',
         description: 'Mining equipment transport specialist. Experienced in handling oversized and heavy machinery for mining operations.',
         company: 'Mining Logistics Co',
@@ -395,7 +395,7 @@ const drivers = [
         id: 'd7',
         name: 'Alice Moyo',
         avatar: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=400&auto=format&fit=crop',
-        truck: 'https://images.unsplash.com/photo-1502195429768-883618b97c7c?q=80&w=800&auto=format&fit=crop',
+        truck: 'https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dHJ1Y2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
         description: 'Specialized in express delivery services. Known for quick turnaround times and excellent customer service.',
         company: 'Swift Deliveries',
         verified: true,
@@ -409,7 +409,7 @@ const drivers = [
         id: 'd8',
         name: 'David Ncube',
         avatar: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=400&auto=format&fit=crop',
-        truck: 'https://images.unsplash.com/photo-1605922347224-13e0e5fc6468?q=80&w=800&auto=format&fit=crop',
+        truck: 'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dHJ1Y2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600',
         description: 'Construction materials transport expert. Specializes in cement, steel, and building materials delivery.',
         company: 'BuildTrans Ltd',
         verified: true,
@@ -422,8 +422,8 @@ const drivers = [
     {
         id: 'd9',
         name: 'Ruth Shumba',
-        avatar: 'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=400&auto=format&fit=crop',
-        truck: 'https://images.unsplash.com/photo-1557801200-013c8a2c2685?q=80&w=800&auto=format&fit=crop',
+        avatar: 'https://images.unsplash.com/photo-1507152832244-10d45c7eda57?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600',
+        truck: 'https://images.unsplash.com/photo-1571989928541-674d0cf46c4a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRydWNrfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         description: 'Petroleum transport specialist with ADR certification. Expert in fuel and hazardous materials handling.',
         company: 'Fuel Safe Transport',
         verified: true,
@@ -436,7 +436,7 @@ const drivers = [
     {
         id: 'd10',
         name: 'James Zimbwa',
-        avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop',
+        avatar: 'https://images.unsplash.com/photo-1531945086322-64e2ffae14a6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJsYWNrJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600',
         truck: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=800&auto=format&fit=crop',
         description: 'Refrigerated transport expert specializing in food and pharmaceutical products. Temperature monitoring certified.',
         company: 'CoolFreight Systems',
@@ -1634,3 +1634,4 @@ function closeSuccessModal() {
     modal.classList.remove('show');
     document.body.style.overflow = 'auto';
 }
+
