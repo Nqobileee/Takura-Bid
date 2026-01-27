@@ -127,17 +127,23 @@ export function Sidebar({ userType }: SidebarProps) {
 
         {/* User Profile Section */}
         <div className="mt-auto pt-6 border-t border-gray-200">
-          <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-50">
+          <Link 
+            href={userType === 'driver' ? '/driver/profile' : '/client/profile'}
+            className="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer group"
+          >
             <div className="w-10 h-10 bg-primary-900 rounded-full flex items-center justify-center text-white font-medium">
               {userType === 'driver' ? 'T' : 'C'}
             </div>
-            <div>
-              <p className="font-medium text-gray-900">
+            <div className="flex-1">
+              <p className="font-medium text-gray-900 group-hover:text-gray-700">
                 {userType === 'driver' ? 'Tendai Mukamuri' : 'Client User'}
               </p>
               <p className="text-sm text-gray-500 capitalize">{userType}</p>
             </div>
-          </div>
+            <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </div>
     </aside>
