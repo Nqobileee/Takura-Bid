@@ -26,7 +26,6 @@ const clientNavItems: NavItem[] = [
   { label: 'Post Load', href: '/client/post-load' },
   { label: 'My Loads', href: '/client/loads' },
   { label: 'Analytics', href: '/client/analytics' },
-  { label: 'Support', href: '/support' },
 ]
 
 export function FloatingNavbar({ userType }: FloatingNavbarProps) {

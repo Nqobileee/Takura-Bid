@@ -220,7 +220,7 @@ export function DriversList() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="space-y-4">
         {mockDrivers.map((driver) => (
           <DriverCard 
             key={driver.id} 
