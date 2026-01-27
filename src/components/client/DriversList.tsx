@@ -170,22 +170,18 @@ function DriverCard({ driver, onSelect }: DriverCardProps) {
 
             {/* Right Side: Action Buttons - Full width on mobile */}
             <div className="flex-shrink-0 w-full lg:w-auto">
-              <div className="flex flex-col sm:flex-row lg:flex-col space-y-2 sm:space-y-0 sm:space-x-3 lg:space-x-0 lg:space-y-2">
-                <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
-                  Message
-                </button>
-                <button 
-                  onClick={() => onSelect(driver)}
-                  disabled={!driver.available}
-                  className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    driver.available
-                      ? 'bg-purple-600 text-white hover:bg-purple-700'
-                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  }`}
-                >
-                  {driver.available ? 'Invite to job' : 'Unavailable'}
-                </button>
-              </div>
+              <button 
+                onClick={() => onSelect(driver)}
+                disabled={!driver.available}
+                className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  driver.available
+                    ? 'text-white hover:opacity-90'
+                    : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                }`}
+                style={driver.available ? { backgroundColor: '#3f2a52' } : {}}
+              >
+                {driver.available ? 'Hire Driver' : 'Unavailable'}
+              </button>
             </div>
           </div>
         </div>
