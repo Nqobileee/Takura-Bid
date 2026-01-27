@@ -45,7 +45,7 @@
   }
 
   .main-content {
-    @apply pt-20 px-6 lg:px-8 max-w-7xl mx-auto;
+    @apply pt-16 px-6 lg:px-8 max-w-7xl mx-auto;
   }
 
   .content-area {
@@ -63,19 +63,20 @@
   }
 
   .navbar-content {
-    @apply max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between;
+    @apply max-w-7xl mx-auto px-6 lg:px-8 py-3 flex items-center justify-between;
+    height: 64px;
   }
 
   .brand-logo {
-    @apply text-2xl font-bold text-gray-900 tracking-tight;
+    @apply text-2xl font-bold text-gray-900 tracking-tight hover:text-gray-700 transition-colors;
   }
 
   .nav-links {
-    @apply hidden md:flex items-center space-x-8;
+    @apply hidden lg:flex items-center space-x-8 flex-1 justify-center;
   }
 
   .nav-link {
-    @apply text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200 relative;
+    @apply text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 relative px-2 py-2 flex items-center;
   }
 
   .nav-link.active {
@@ -84,7 +85,7 @@
 
   .nav-link.active::after {
     content: '';
-    @apply absolute -bottom-1 left-0 right-0 h-0.5 bg-gray-900;
+    @apply absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gray-900;
   }
 
   .user-profile {
@@ -96,7 +97,7 @@
   }
 
   .mobile-menu-button {
-    @apply md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors;
+    @apply lg:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors;
   }
 
   /* Page Structure */
