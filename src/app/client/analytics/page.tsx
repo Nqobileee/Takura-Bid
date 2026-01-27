@@ -39,7 +39,7 @@ export default function ClientAnalytics() {
           {/* Total Shipping Costs Over Time */}
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title">Total Shipping Costs Over Time 💰</h2>
+              <h2 className="card-title">Total Shipping Costs Over Time</h2>
             </div>
             <div className="p-6">
               <div className="mb-4">
@@ -92,7 +92,7 @@ export default function ClientAnalytics() {
           {/* On-Time Delivery Rate */}
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title">On-Time Delivery Rate ⏱️</h2>
+              <h2 className="card-title">On-Time Delivery Rate</h2>
             </div>
             <div className="p-6">
               <div className="mb-4">
@@ -136,7 +136,7 @@ export default function ClientAnalytics() {
           {/* Shipment Volume by Route/Region */}
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title">Shipment Volume by Route/Region 🚚</h2>
+              <h2 className="card-title">Shipment Volume by Route/Region</h2>
             </div>
             <div className="p-6">
               <div className="space-y-4">
@@ -195,7 +195,7 @@ export default function ClientAnalytics() {
           {/* Average Cost per Mile/Load */}
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title">Average Cost per Mile / Load 📊</h2>
+              <h2 className="card-title">Average Cost per Mile / Load</h2>
             </div>
             <div className="p-6">
               <div className="mb-4">
@@ -251,17 +251,14 @@ export default function ClientAnalytics() {
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">📈</div>
                 <div className="text-2xl font-bold text-gray-900">15%</div>
                 <div className="text-sm text-gray-600">Cost Savings vs Last Month</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">⚡</div>
                 <div className="text-2xl font-bold text-gray-900">2.3 days</div>
                 <div className="text-sm text-gray-600">Average Delivery Time</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600 mb-2">🎯</div>
                 <div className="text-2xl font-bold text-gray-900">98%</div>
                 <div className="text-sm text-gray-600">Driver Satisfaction Rate</div>
               </div>

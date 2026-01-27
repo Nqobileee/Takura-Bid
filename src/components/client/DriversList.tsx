@@ -27,7 +27,7 @@ const mockDrivers: Driver[] = [
     totalEarned: '$33K+ earned',
     available: true,
     skills: ['Heavy Equipment', 'Long Distance', 'Flatbed Transport', 'Construction', 'Mining Equipment', '+3'],
-    description: 'Welcome! 🚛 TRANSPORT EXPERT ✅ Quick Response to invitations. Hi, I\'m Tendai Mukamuri an Expert Heavy Equipment Transport Driver. I have speciality in heavy equipment transport. I have delivered 250+ loads for multiple companies/clients. I have 8+ years...'
+    description: 'Welcome! TRANSPORT EXPERT. Quick Response to invitations. Hi, I\'m Tendai Mukamuri an Expert Heavy Equipment Transport Driver. I have speciality in heavy equipment transport. I have delivered 250+ loads for multiple companies/clients. I have 8+ years...'
   },
   {
     id: '2', 
