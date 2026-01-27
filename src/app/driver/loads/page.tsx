@@ -69,52 +69,64 @@ const mockLoads: Load[] = [
   },
 ]
 
-function LoadCard({ load }: { load: Load }) {
+function LoadListItem({ load }: { load: Load }) {
   return (
-    <div className="load-card group">
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-1">
-            {load.origin} → {load.destination}
-          </h3>
-          <p className="text-sm text-gray-500">{load.loadType} • {load.weight}</p>
+    <div className="p-6 hover:bg-gray-50 transition-colors">
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <div className="flex items-start justify-between mb-3">
+            <div className="flex-1">
+              <div className="flex items-center space-x-3 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {load.origin} → {load.destination}
+                </h3>
+                {load.urgent && (
+                  <span className="px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">
+                    Urgent
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-gray-600 mb-3">{load.loadType} • {load.weight}</p>
+            </div>
+            <div className="text-right">
+              <span className="text-2xl font-bold text-primary-900">${load.rate}</span>
+              <p className="text-sm text-gray-500">Rate</p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Distance</p>
+              <p className="font-medium text-gray-900">{load.distance}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Client</p>
+              <p className="font-medium text-gray-900">{load.client}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Pickup</p>
+              <p className="font-medium text-gray-900">{new Date(load.pickupDate).toLocaleDateString()}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Delivery</p>
+              <p className="font-medium text-gray-900">{new Date(load.deliveryDate).toLocaleDateString()}</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <span className="text-sm text-gray-500">Load ID: {load.id}</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <button className="text-primary-900 hover:text-primary-800 font-medium text-sm px-4 py-2 rounded-lg border border-primary-900 hover:bg-primary-50 transition-colors">
+                View Details
+              </button>
+              <button className="btn-primary">
+                Place Bid
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center space-x-2">
-          {load.urgent && (
-            <span className="px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">
-              Urgent
-            </span>
-          )}
-          <span className="text-lg font-bold text-primary-900">${load.rate}</span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div>
-          <p className="text-xs text-gray-500 uppercase tracking-wide">Distance</p>
-          <p className="font-medium">{load.distance}</p>
-        </div>
-        <div>
-          <p className="text-xs text-gray-500 uppercase tracking-wide">Client</p>
-          <p className="font-medium">{load.client}</p>
-        </div>
-        <div>
-          <p className="text-xs text-gray-500 uppercase tracking-wide">Pickup Date</p>
-          <p className="font-medium">{new Date(load.pickupDate).toLocaleDateString()}</p>
-        </div>
-        <div>
-          <p className="text-xs text-gray-500 uppercase tracking-wide">Delivery Date</p>
-          <p className="font-medium">{new Date(load.deliveryDate).toLocaleDateString()}</p>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-        <button className="text-primary-900 hover:text-primary-800 font-medium text-sm">
-          View Details
-        </button>
-        <button className="btn-primary">
-          Place Bid
-        </button>
       </div>
     </div>
   )
@@ -217,11 +229,16 @@ export default function LoadBoard() {
           </div>
         </div>
 
-        {/* Load Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          {mockLoads.map((load) => (
-            <LoadCard key={load.id} load={load} />
-          ))}
+        {/* Load List */}
+        <div className="bg-white rounded-lg border border-gray-200">
+          <div className="px-6 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900">Available Loads</h2>
+          </div>
+          <div className="divide-y divide-gray-200">
+            {mockLoads.map((load) => (
+              <LoadListItem key={load.id} load={load} />
+            ))}
+          </div>
         </div>
       </div>
     </DashboardLayout>

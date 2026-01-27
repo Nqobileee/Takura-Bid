@@ -36,6 +36,24 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 }
 
 
+// Validate ../../../src/app/client/chat/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/client/chat">> = Specific
+  const handler = {} as typeof import("../../../src/app/client/chat/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/client/loads/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/client/loads">> = Specific
+  const handler = {} as typeof import("../../../src/app/client/loads/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../src/app/client/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/client">> = Specific
@@ -49,6 +67,24 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 {
   type __IsExpected<Specific extends AppPageConfig<"/client/post-load">> = Specific
   const handler = {} as typeof import("../../../src/app/client/post-load/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/driver/chat/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/driver/chat">> = Specific
+  const handler = {} as typeof import("../../../src/app/driver/chat/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/driver/jobs/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/driver/jobs">> = Specific
+  const handler = {} as typeof import("../../../src/app/driver/jobs/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
