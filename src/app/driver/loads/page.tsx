@@ -225,18 +225,18 @@ export default function LoadBoard() {
       <div className="content-area">
         {/* Page Header */}
         <div className="page-header">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <h1 className="page-title">Load Board</h1>
               <p className="page-subtitle">Browse available loads and place your bids</p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <input 
                 type="text" 
-                className="input-field w-80" 
+                className="input-field w-full sm:w-80" 
                 placeholder="Search by origin, destination, load type..."
               />
-              <button className="btn-secondary">
+              <button className="btn-secondary whitespace-nowrap">
                 Filters
               </button>
             </div>
