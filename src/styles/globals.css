@@ -69,6 +69,13 @@
 
   .brand-logo {
     @apply text-2xl font-bold text-gray-900 tracking-tight hover:text-gray-700 transition-colors;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .nav-links {

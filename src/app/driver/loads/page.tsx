@@ -18,6 +18,7 @@ interface Load {
   clientSpent: string
   bidsCount: number
   postedTime: string
+  tripType: 'One Way' | 'Round Trip'
 }
 
 const mockLoads: Load[] = [
@@ -38,7 +39,8 @@ const mockLoads: Load[] = [
     clientRating: 4.8,
     clientSpent: '$15.2K',
     bidsCount: 3,
-    postedTime: '2 hours ago'
+    postedTime: '2 hours ago',
+    tripType: 'One Way'
   },
   {
     id: 'LOAD002',
@@ -57,7 +59,8 @@ const mockLoads: Load[] = [
     clientRating: 4.9,
     clientSpent: '$28.5K',
     bidsCount: 1,
-    postedTime: '30 minutes ago'
+    postedTime: '30 minutes ago',
+    tripType: 'Round Trip'
   },
   {
     id: 'LOAD003',
@@ -76,7 +79,8 @@ const mockLoads: Load[] = [
     clientRating: 4.7,
     clientSpent: '$8.9K',
     bidsCount: 7,
-    postedTime: '4 hours ago'
+    postedTime: '4 hours ago',
+    tripType: 'One Way'
   },
   {
     id: 'LOAD004',
@@ -95,7 +99,8 @@ const mockLoads: Load[] = [
     clientRating: 4.6,
     clientSpent: '$45.3K',
     bidsCount: 2,
-    postedTime: '1 hour ago'
+    postedTime: '1 hour ago',
+    tripType: 'Round Trip'
   },
 ]
 
@@ -121,12 +126,12 @@ function LoadListItem({ load }: { load: Load }) {
 
       {/* Main title */}
       <h3 className="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer">
-        {load.loadType} Transport: {load.origin} → {load.destination} – {load.weight}
+        {load.loadType} Transport
       </h3>
 
       {/* Job details */}
       <div className="text-sm text-gray-600 mb-4">
-        Fixed-rate • Urgent • Est. Budget: ${load.rate}
+        {load.tripType} • {load.urgent ? 'Urgent' : 'Standard'} • {load.distance} • Est. Budget: ${load.rate}
       </div>
 
       {/* Important notice */}
@@ -197,14 +202,10 @@ function LoadListItem({ load }: { load: Load }) {
           {/* Client spending */}
           <span className="text-sm text-gray-600">{load.clientSpent} spent</span>
 
-          {/* Location placeholder */}
-          <div className="flex items-center space-x-1">
-            <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span className="text-sm text-gray-600">ZWE</span>
-          </div>
+          {/* Route and weight */}
+          <span className="text-sm text-gray-600">
+            {load.origin} → {load.destination} – {load.weight}
+          </span>
         </div>
       </div>
 
