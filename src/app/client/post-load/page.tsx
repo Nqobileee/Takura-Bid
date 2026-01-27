@@ -44,13 +44,15 @@ export default function PostLoadPage() {
             </div>
           </div>
         </div>
-        <div className="card max-w-6xl mx-auto">
-
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Load Information */}
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+        
+        <div className="max-w-6xl mx-auto">
+          <div className="card">
+            <div className="card-content">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Load Information */}
+                <div className="bg-gray-50 p-6 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                    <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mr-3">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v13a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2v2h2V6H5zm2 2v2H5v-2h2zm-2 2v2h2v-2H5zm2 2v2H5v-2h2zm2-8v2h2V6H9zm2 2v2H9v-2h2zm-2 2v2h2v-2H9zm2 2v2H9v-2h2zm2-8v2h2V6h-2zm2 2v2h-2v-2h2zm-2 2v2h2v-2h-2zm2 2v2h-2v-2h2z"/>
                   </svg>
@@ -68,7 +70,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.loadType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white"
+                    className="input-field"
                   >
                     <option value="">Select load type</option>
                     <option value="agricultural">Agricultural Products</option>
@@ -94,7 +96,7 @@ export default function PostLoadPage() {
                     step="0.1"
                     value={formData.weight}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="input-field"
                     placeholder="e.g. 5.5"
                   />
                 </div>
@@ -299,6 +301,8 @@ export default function PostLoadPage() {
           </form>
         </div>
       </div>
-    </DashboardLayout>
+    </div>
+  </div>
+</DashboardLayout>
   )
 }

@@ -112,16 +112,16 @@ function ConversationList({ conversations, selectedConversation, onSelectConvers
   onSelectConversation: (id: string) => void
 }) {
   return (
-    <div className="card h-full">
+    <div className="card h-full flex flex-col">
       <div className="card-header">
         <h2 className="card-title">Messages</h2>
       </div>
-      <div className="overflow-y-auto h-full">
+      <div className="flex-1 overflow-y-auto">
         {conversations.map((conversation) => (
           <div
             key={conversation.id}
             onClick={() => onSelectConversation(conversation.id)}
-            className={`list-item cursor-pointer transition-colors ${
+            className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${
               selectedConversation === conversation.id ? 'bg-blue-50 border-blue-200' : ''
             }`}
           >
@@ -254,9 +254,9 @@ export default function ClientChat() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Conversations List */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 h-96 lg:h-[600px]">
             <ConversationList
               conversations={mockConversations}
               selectedConversation={selectedConversation}
@@ -265,7 +265,7 @@ export default function ClientChat() {
           </div>
 
           {/* Chat Window */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 h-96 lg:h-[600px]">
             <ChatWindow conversation={selectedConv || null} />
           </div>
         </div>
