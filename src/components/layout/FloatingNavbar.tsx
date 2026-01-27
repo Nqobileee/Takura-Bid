@@ -23,7 +23,7 @@ const driverNavItems: NavItem[] = [
 
 const clientNavItems: NavItem[] = [
   { label: 'Find Drivers', href: '/client', hasDropdown: true },
-  { label: 'Post Load', href: '/client/post-load' },
+  { label: 'Messages', href: '/client/chat' },
   { label: 'My Loads', href: '/client/loads' },
   { label: 'Analytics', href: '/client/analytics' },
 ]

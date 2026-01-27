@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 
 interface Load {
@@ -198,12 +199,12 @@ export default function MyLoads() {
               <option value="completed">Completed</option>
             </select>
           </div>
-          <button className="btn-primary">
+          <Link href="/client/post-load" className="btn-primary inline-flex items-center">
             <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
             Post New Load
-          </button>
+          </Link>
         </div>
       </div>
 
