@@ -103,22 +103,28 @@ interface DriverCardProps {
 
 function DriverCard({ driver, onSelect }: DriverCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200 p-6">
-      <div className="flex items-start space-x-4">
+    <div className="bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200 p-4 md:p-6">
+      <div className="flex flex-col lg:flex-row lg:items-start space-y-4 lg:space-y-0 lg:space-x-4">
         {/* Profile Image and Basic Info */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
           <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
             {driver.name.split(' ').map(n => n[0]).join('')}
+          </div>
+          
+          {/* Mobile: Name and Title directly next to avatar on mobile */}
+          <div className="sm:hidden text-center">
+            <h3 className="text-lg font-semibold text-gray-900">{driver.name}</h3>
+            <p className="text-sm font-medium text-gray-900 leading-tight mt-1">{driver.title}</p>
           </div>
         </div>
 
         {/* Main Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between">
+          <div className="lg:flex lg:items-start lg:justify-between">
             {/* Left Side: Driver Details */}
-            <div className="flex-1 mr-4">
-              {/* Name and Title */}
-              <div className="mb-2">
+            <div className="flex-1 lg:mr-4">
+              {/* Name and Title - Hidden on mobile, shown on tablet+ */}
+              <div className="hidden sm:block mb-2">
                 <div className="flex items-center space-x-2 mb-1">
                   <h3 className="text-lg font-semibold text-gray-900">{driver.name}</h3>
                 </div>
@@ -141,7 +147,7 @@ function DriverCard({ driver, onSelect }: DriverCardProps) {
 
               {/* Skills Tags */}
               <div className="flex flex-wrap gap-2 mb-3">
-                {driver.skills.map((skill, index) => (
+                {driver.skills.slice(0, 3).map((skill, index) => (
                   <span 
                     key={index}
                     className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-md"
@@ -149,24 +155,29 @@ function DriverCard({ driver, onSelect }: DriverCardProps) {
                     {skill}
                   </span>
                 ))}
+                {driver.skills.length > 3 && (
+                  <span className="px-2 py-1 text-xs bg-gray-200 text-gray-600 rounded-md">
+                    +{driver.skills.length - 3} more
+                  </span>
+                )}
               </div>
 
-              {/* Description */}
-              <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+              {/* Description - Hidden on mobile */}
+              <p className="hidden md:block text-sm text-gray-600 leading-relaxed line-clamp-2 mb-4">
                 {driver.description}
               </p>
             </div>
 
-            {/* Right Side: Action Buttons */}
-            <div className="flex-shrink-0">
-              <div className="flex space-x-3">
-                <button className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+            {/* Right Side: Action Buttons - Full width on mobile */}
+            <div className="flex-shrink-0 w-full lg:w-auto">
+              <div className="flex flex-col sm:flex-row lg:flex-col space-y-2 sm:space-y-0 sm:space-x-3 lg:space-x-0 lg:space-y-2">
+                <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
                   Message
                 </button>
                 <button 
                   onClick={() => onSelect(driver)}
                   disabled={!driver.available}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     driver.available
                       ? 'bg-purple-600 text-white hover:bg-purple-700'
                       : 'bg-gray-100 text-gray-400 cursor-not-allowed'

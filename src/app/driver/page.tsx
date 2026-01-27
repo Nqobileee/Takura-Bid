@@ -6,7 +6,7 @@ export default function DriverAnalytics() {
       <div className="content-area">
         {/* Page Header */}
         <div className="page-header">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h1 className="page-title">Analytics</h1>
               <p className="page-subtitle">Track your performance metrics and insights.</p>
@@ -14,27 +14,35 @@ export default function DriverAnalytics() {
           </div>
         </div>
         {/* Key Metrics */}
-        <div className="stats-grid mb-8">
-          <div className="stat-card">
-            <div className="stat-value">$27,000</div>
-            <div className="stat-label">Total Earnings</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">$27,000</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Total Earnings</div>
+            </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-value">4.8</div>
-            <div className="stat-label">Average Rating</div>
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">4.8</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Average Rating</div>
+            </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-value">45,200</div>
-            <div className="stat-label">Total Kilometres</div>
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">45,200</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Total Kilometres</div>
+            </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-value">Top 5%</div>
-            <div className="stat-label">Top Rated Driver</div>
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Top 5%</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Top Rated Driver</div>
+            </div>
           </div>
         </div>
 
         {/* Analytics Charts */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:mb-8">
           {/* Views & Clicks Chart */}
           <div className="card">
             <div className="card-header">

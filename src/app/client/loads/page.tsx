@@ -98,46 +98,48 @@ function getStatusBadge(status: Load['status']) {
 
 function LoadListItem({ load }: { load: Load }) {
   return (
-    <div className="p-6 hover:bg-gray-50 transition-colors">
-      <div className="flex items-start justify-between mb-4">
+    <div className="p-4 md:p-6 hover:bg-gray-50 transition-colors">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-4 sm:space-y-0 mb-4">
         <div className="flex-1">
-          <div className="flex items-center space-x-3 mb-2">
-            <h3 className="text-lg font-semibold text-gray-900">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-2 sm:space-y-0 mb-2">
+            <h3 className="text-base md:text-lg font-semibold text-gray-900">
               {load.origin} → {load.destination}
             </h3>
-            {getStatusBadge(load.status)}
+            <div className="flex justify-start">
+              {getStatusBadge(load.status)}
+            </div>
           </div>
           <p className="text-sm text-gray-600 mb-3">{load.loadType} • {load.weight}</p>
         </div>
-        <div className="text-right">
-          <span className="text-2xl font-bold text-primary-900">${load.rate}</span>
+        <div className="text-left sm:text-right">
+          <span className="text-xl md:text-2xl font-bold text-primary-900">${load.rate}</span>
           <p className="text-sm text-gray-500">Budget</p>
         </div>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4">
         <div>
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Distance</p>
-          <p className="font-medium text-gray-900">{load.distance}</p>
+          <p className="font-medium text-gray-900 text-sm">{load.distance}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Bids Received</p>
-          <p className="font-medium text-gray-900">{load.bidsCount}</p>
+          <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Bids</p>
+          <p className="font-medium text-gray-900 text-sm">{load.bidsCount}</p>
         </div>
         <div>
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Pickup</p>
-          <p className="font-medium text-gray-900">{new Date(load.pickupDate).toLocaleDateString()}</p>
+          <p className="font-medium text-gray-900 text-sm">{new Date(load.pickupDate).toLocaleDateString()}</p>
         </div>
         <div>
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Delivery</p>
-          <p className="font-medium text-gray-900">{new Date(load.deliveryDate).toLocaleDateString()}</p>
+          <p className="font-medium text-gray-900 text-sm">{new Date(load.deliveryDate).toLocaleDateString()}</p>
         </div>
       </div>
 
       {load.assignedDriver && (
         <div className="mb-4 p-3 bg-blue-50 rounded-lg">
           <div className="flex items-center space-x-2">
-            <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
             <span className="text-sm font-medium text-blue-900">Assigned to: {load.assignedDriver}</span>
@@ -145,28 +147,31 @@ function LoadListItem({ load }: { load: Load }) {
         </div>
       )}
       
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <span className="text-sm text-gray-500">Load ID: {load.id}</span>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-1 sm:space-y-0">
+          <span className="text-sm text-gray-500">ID: {load.id}</span>
           <span className="text-sm text-gray-500">Posted: {new Date(load.createdDate).toLocaleDateString()}</span>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-wrap items-center gap-3">
           {load.status === 'in_bidding' && (
             <button className="text-blue-600 hover:text-blue-800 font-medium text-sm px-4 py-2 rounded-lg border border-blue-600 hover:bg-blue-50 transition-colors">
-              View Bids ({load.bidsCount})
+              <span className="sm:hidden">Bids ({load.bidsCount})</span>
+              <span className="hidden sm:inline">View Bids ({load.bidsCount})</span>
             </button>
           )}
           {load.status === 'in_transit' && (
             <button className="text-orange-600 hover:text-orange-800 font-medium text-sm px-4 py-2 rounded-lg border border-orange-600 hover:bg-orange-50 transition-colors">
-              Track Load
+              <span className="sm:hidden">Track</span>
+              <span className="hidden sm:inline">Track Load</span>
             </button>
           )}
           {load.status === 'completed' && (
             <button className="text-gray-600 hover:text-gray-800 font-medium text-sm px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
-              View Receipt
+              <span className="sm:hidden">Receipt</span>
+              <span className="hidden sm:inline">View Receipt</span>
             </button>
           )}
-          <button className="btn-primary">
+          <button className="btn-primary flex-shrink-0">
             Manage
           </button>
         </div>
@@ -183,27 +188,30 @@ export default function MyLoads() {
   return (
     <DashboardLayout userType="client">
       {/* Header */}
-      <div className="top-header">
-        <div>
-          <h1 className="page-title">My Loads</h1>
-        </div>
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <span>Filter by:</span>
-            <select className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-              <option value="all">All Loads</option>
-              <option value="in_bidding">In Bidding</option>
-              <option value="assigned">Assigned</option>
-              <option value="in_transit">In Transit</option>
-              <option value="completed">Completed</option>
-            </select>
+      <div className="page-header">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+          <div>
+            <h1 className="page-title">My Loads</h1>
           </div>
-          <Link href="/client/post-load" className="btn-primary inline-flex items-center">
-            <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            Post New Load
-          </Link>
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <span className="hidden sm:inline">Filter by:</span>
+              <select className="flex-1 sm:flex-none border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <option value="all">All Loads</option>
+                <option value="in_bidding">In Bidding</option>
+                <option value="assigned">Assigned</option>
+                <option value="in_transit">In Transit</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <Link href="/client/post-load" className="btn-primary inline-flex items-center justify-center w-full sm:w-auto">
+              <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <span className="sm:hidden">Post Load</span>
+              <span className="hidden sm:inline">Post New Load</span>
+            </Link>
+          </div>
         </div>
       </div>
 

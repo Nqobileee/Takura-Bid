@@ -104,9 +104,16 @@ export default function PostLoadPage() {
             </div>
 
             {/* Location Information */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Location & Schedule</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gray-50 p-4 lg:p-6 rounded-lg">
+              <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4 lg:mb-6 flex items-center">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" fillRule="evenodd"></path>
+                  </svg>
+                </div>
+                Location & Schedule
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                 <div>
                   <label htmlFor="origin" className="block text-sm font-medium text-gray-700 mb-2">
                     Pickup Location *
@@ -282,17 +289,17 @@ export default function PostLoadPage() {
             </div>
 
             {/* Submit Button */}
-            <div className="pt-6 border-t border-gray-200">
-              <div className="flex items-center justify-between">
+            <div className="pt-4 lg:pt-6 border-t border-gray-200">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0 sm:space-x-4">
                 <button
                   type="button"
-                  className="btn-secondary"
+                  className="btn-secondary w-full sm:w-auto order-2 sm:order-1"
                 >
                   Save as Draft
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary px-8"
+                  className="btn-primary w-full sm:w-auto px-6 lg:px-8 order-1 sm:order-2"
                 >
                   Post Load
                 </button>

@@ -87,11 +87,11 @@
   }
 
   .main-content {
-    @apply pt-16 px-6 lg:px-8 max-w-7xl mx-auto;
+    @apply pt-16 px-4 lg:px-8 max-w-7xl mx-auto;
   }
 
   .content-area {
-    @apply flex-1 overflow-auto p-6 space-y-6;
+    @apply flex-1 overflow-auto p-4 lg:p-6 space-y-4 lg:space-y-6;
   }
 
   /* Floating Navbar */
@@ -105,7 +105,7 @@
   }
 
   .navbar-content {
-    @apply max-w-7xl mx-auto px-6 lg:px-8 py-3 flex items-center justify-between;
+    @apply max-w-7xl mx-auto px-4 lg:px-8 py-3 flex items-center justify-between;
     height: 64px;
   }
 
@@ -151,7 +151,7 @@
 
   /* Page Structure */
   .page-header {
-    @apply mb-8;
+    @apply mb-6 lg:mb-8;
   }
 
   .page-title {
@@ -217,16 +217,19 @@
   .btn-primary {
     @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-900 border border-transparent shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-200;
     border-radius: 6px;
+    min-height: 40px;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-200;
     border-radius: 6px;
+    min-height: 40px;
   }
 
   .btn-ghost {
     @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200;
     border-radius: 6px;
+    min-height: 40px;
   }
 
   /* Form Elements */
@@ -234,6 +237,8 @@
     @apply block w-full px-4 py-3 text-gray-900 border border-gray-300 shadow-sm focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200;
     border-radius: 6px;
     background-color: var(--card-bg);
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
   }
 
   .input-field:focus {

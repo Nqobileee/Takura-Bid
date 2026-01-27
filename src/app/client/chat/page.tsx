@@ -254,7 +254,7 @@ export default function ClientChat() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
           {/* Conversations List */}
           <div className="lg:col-span-1 h-96 lg:h-[600px]">
             <ConversationList

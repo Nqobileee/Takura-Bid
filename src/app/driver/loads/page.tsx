@@ -161,20 +161,20 @@ function LoadListItem({ load }: { load: Load }) {
       )}
 
       {/* Skills/Requirements tags */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-4 lg:mb-6">
         {load.requirements?.map((req, index) => (
-          <span key={index} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+          <span key={index} className="px-2 lg:px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs lg:text-sm">
             {req}
           </span>
         ))}
-        <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+        <span className="px-2 lg:px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs lg:text-sm">
           {load.distance}
         </span>
       </div>
 
       {/* Client info and stats */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0">
           {/* Payment verified badge */}
           <div className="flex items-center space-x-1">
             <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center">
