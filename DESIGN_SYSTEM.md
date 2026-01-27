@@ -104,7 +104,7 @@ font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-se
 ### Accent Colors Used in Components
 
 #### Purple (Brand Accent)
-- `purple-600` (#9333ea) - Primary purple for buttons and accents
+- `purple-600` (#3f2a52) - Primary purple for buttons and accents
 - `purple-700` (#7c3aed) - Hover state for purple elements
 
 #### Blue (Information)
@@ -361,7 +361,7 @@ font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-se
 #### Purple Accent Buttons (Used for driver cards)
 ```css
 /* Message and Invite buttons */
-background-color: #9333ea; /* purple-600 */
+background-color: #3f2a52; /* purple-600 */
 color: white;
 
 /* Hover state */
@@ -443,7 +443,7 @@ Following Tailwind CSS breakpoints:
 
 ### Primary Brand Colors
 - **Black (#000000)**: Primary brand color for text and UI elements
-- **Purple (#9333ea)**: Secondary brand color for accents and CTAs
+- **Purple (#3f2a52)**: Secondary brand color for accents and CTAs
 - **White (#ffffff)**: Background and contrast color
 
 ### Design Principles
