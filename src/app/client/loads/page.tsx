@@ -186,7 +186,6 @@ export default function MyLoads() {
       <div className="top-header">
         <div>
           <h1 className="page-title">My Loads</h1>
-          <p className="text-gray-600 mt-1">Manage your posted loads and track their progress</p>
         </div>
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
