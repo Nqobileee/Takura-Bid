@@ -44,24 +44,22 @@ export default function PostLoadPage() {
             </div>
           </div>
         </div>
-        <div className="card max-w-4xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gray-900 rounded-lg flex items-center justify-center mx-auto mb-4">
-              {/* Simple truck representation */}
-              <div className="w-8 h-6 border-2 border-white rounded-sm"></div>
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Post Your Load</h2>
-            <p className="text-gray-600">Fill out the details below to post your load and get competitive bids from verified drivers</p>
-          </div>
+        <div className="card max-w-6xl mx-auto">
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Load Information */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Load Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="loadType" className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v13a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2v2h2V6H5zm2 2v2H5v-2h2zm-2 2v2h2v-2H5zm2 2v2H5v-2h2zm2-8v2h2V6H9zm2 2v2H9v-2h2zm-2 2v2h2v-2H9zm2 2v2H9v-2h2zm2-8v2h2V6h-2zm2 2v2h-2v-2h2zm-2 2v2h2v-2h-2zm2 2v2h-2v-2h2z"/>
+                  </svg>
+                </div>
+                Load Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="loadType" className="block text-sm font-semibold text-gray-800">
                     Load Type *
                   </label>
                   <select
@@ -70,7 +68,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.loadType}
                     onChange={handleChange}
-                    className="input-field"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white"
                   >
                     <option value="">Select load type</option>
                     <option value="agricultural">Agricultural Products</option>
@@ -83,8 +81,8 @@ export default function PostLoadPage() {
                   </select>
                 </div>
 
-                <div>
-                  <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="space-y-2">
+                  <label htmlFor="weight" className="block text-sm font-semibold text-gray-800">
                     Weight (tons) *
                   </label>
                   <input
@@ -96,7 +94,7 @@ export default function PostLoadPage() {
                     step="0.1"
                     value={formData.weight}
                     onChange={handleChange}
-                    className="input-field"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                     placeholder="e.g. 5.5"
                   />
                 </div>
