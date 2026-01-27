@@ -21,11 +21,11 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-gray-200;
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-gray-50 text-gray-900 font-sans;
     font-family: 'Poppins', sans-serif;
   }
 }
