@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-accent: #391b49;
+    --secondary-accent: #2d1538;
+    --sidebar-bg: #f8f4f9;
+    --main-bg: #faf9fa;
+    --card-bg: #FFFFFF;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --border-outline: #e8d5ea;
+    --hover-highlight: rgba(57, 27, 73, 0.1);
+    --active-bg: #f0e8f2;
+    --inactive-icon: #9CA3AF;
+    --glow-effect: 0 0 20px rgba(57, 27, 73, 0.3);
+    --glow-effect-strong: 0 0 30px rgba(57, 27, 73, 0.5);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  .app-container {
+    @apply flex h-screen bg-gray-50;
+  }
+
+  .sidebar {
+    @apply w-64 bg-white shadow-lg border-r border-gray-200 flex flex-col;
+  }
+
+  .sidebar-content {
+    @apply flex-1 flex flex-col p-6;
+  }
+
+  .logo-section {
+    @apply flex items-center space-x-3 mb-8;
+  }
+
+  .logo-icon {
+    @apply w-8 h-8 rounded-lg bg-primary-900 flex items-center justify-center;
+  }
+
+  .logo-text {
+    @apply text-xl font-semibold text-gray-900;
+  }
+
+  .nav-list {
+    @apply space-y-2;
+  }
+
+  .nav-item {
+    @apply list-none;
+  }
+
+  .nav-link {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200;
+  }
+
+  .nav-link.active {
+    @apply bg-primary-50 text-primary-900 border border-primary-200;
+  }
+
+  .nav-icon {
+    @apply w-5 h-5;
+  }
+
+  .main-content {
+    @apply flex-1 flex flex-col overflow-hidden;
+  }
+
+  .top-header {
+    @apply bg-white border-b border-gray-200 p-6 flex items-center justify-between;
+  }
+
+  .page-title {
+    @apply text-2xl font-semibold text-gray-900;
+  }
+
+  .content-area {
+    @apply flex-1 overflow-auto p-6 space-y-6;
+  }
+
+  .stats-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+
+  .stat-card {
+    @apply bg-white rounded-lg border border-gray-200 p-6;
+  }
+
+  .load-card {
+    @apply bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-primary-900 text-white px-4 py-2 rounded-lg hover:bg-primary-800 transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors duration-200;
+  }
+}
