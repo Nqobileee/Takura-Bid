@@ -39,6 +39,7 @@
 }
 
 @layer components {
+  /* Layout Components */
   .app-container {
     @apply min-h-screen bg-white;
   }
@@ -47,6 +48,11 @@
     @apply pt-20 px-6 lg:px-8 max-w-7xl mx-auto;
   }
 
+  .content-area {
+    @apply flex-1 overflow-auto p-6 space-y-6;
+  }
+
+  /* Floating Navbar */
   .floating-navbar {
     @apply fixed top-0 left-0 right-0 z-50;
     background: rgba(255, 255, 255, 0.95);
@@ -86,72 +92,108 @@
   }
 
   .profile-avatar {
-    @apply w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-semibold;
+    @apply w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center text-sm font-semibold;
   }
 
   .mobile-menu-button {
     @apply md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors;
   }
-    @apply w-8 h-8 rounded-lg bg-primary-900 flex items-center justify-center;
-  }
 
-  .logo-text {
-    @apply text-xl font-semibold text-gray-900;
-  }
-
-  .nav-list {
-    @apply space-y-2;
-  }
-
-  .nav-item {
-    @apply list-none;
-  }
-
-  .nav-link {
-    @apply flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200;
-  }
-
-  .nav-link.active {
-    @apply bg-primary-50 text-primary-900 border border-primary-200;
-  }
-
-  .nav-icon {
-    @apply w-5 h-5;
-  }
-
-  .main-content {
-    @apply flex-1 flex flex-col overflow-hidden;
-  }
-
-  .top-header {
-    @apply bg-white border-b border-gray-200 p-6 flex items-center justify-between;
+  /* Page Structure */
+  .page-header {
+    @apply mb-8;
   }
 
   .page-title {
-    @apply text-2xl font-semibold text-gray-900;
+    @apply text-3xl font-bold text-gray-900 mb-2;
   }
 
-  .content-area {
-    @apply flex-1 overflow-auto p-6 space-y-6;
+  .page-subtitle {
+    @apply text-gray-600;
   }
 
+  /* Cards */
+  .card {
+    @apply bg-white border border-gray-200 shadow-sm;
+    border-radius: 8px;
+    box-shadow: var(--glow-effect);
+  }
+
+  .card-header {
+    @apply px-6 py-4 border-b border-gray-200;
+  }
+
+  .card-title {
+    @apply text-lg font-semibold text-gray-900;
+  }
+
+  .card-content {
+    @apply p-6;
+  }
+
+  /* Stats */
   .stats-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8;
   }
 
   .stat-card {
-    @apply bg-white rounded-lg border border-gray-200 p-6;
+    @apply bg-white border border-gray-200 p-6 text-center;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
   }
 
-  .load-card {
-    @apply bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200 cursor-pointer;
+  .stat-value {
+    @apply text-3xl font-bold text-gray-900 mb-2;
   }
 
+  .stat-label {
+    @apply text-sm font-medium text-gray-600;
+  }
+
+  /* Buttons */
   .btn-primary {
-    @apply bg-primary-900 text-white px-4 py-2 rounded-lg hover:bg-primary-800 transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-900 border border-transparent shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-200;
+    border-radius: 6px;
   }
 
   .btn-secondary {
-    @apply bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-200;
+    border-radius: 6px;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200;
+    border-radius: 6px;
+  }
+
+  /* Form Elements */
+  .input-field {
+    @apply block w-full px-4 py-3 text-gray-900 border border-gray-300 shadow-sm focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200;
+    border-radius: 6px;
+    background-color: var(--card-bg);
+  }
+
+  .input-field:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* List Items */
+  .list-item {
+    @apply border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors duration-200;
+  }
+
+  /* Status Badges */
+  .status-badge {
+    @apply inline-flex items-center px-2 py-1 text-xs font-medium;
+    border-radius: 4px;
+  }
+
+  /* Utilities */
+  .glow {
+    box-shadow: var(--glow-effect-strong);
+  }
+
+  .shadow-professional {
+    box-shadow: var(--shadow-md);
   }
 }
