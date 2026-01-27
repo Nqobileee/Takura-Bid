@@ -23,6 +23,14 @@ export default function DriverAnalytics() {
             <div className="stat-value">4.8</div>
             <div className="stat-label">Average Rating</div>
           </div>
+          <div className="stat-card">
+            <div className="stat-value">45,200</div>
+            <div className="stat-label">Total Kilometres</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-value">Top 5%</div>
+            <div className="stat-label">Top Rated Driver</div>
+          </div>
         </div>
 
         {/* Analytics Charts */}
