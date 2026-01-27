@@ -255,13 +255,6 @@ export default function Chat() {
 
   return (
     <DashboardLayout userType="driver">
-      <div className="top-header">
-        <div>
-          <h1 className="page-title">Chat</h1>
-          <p className="text-gray-600 mt-1">Communicate with your clients in real-time</p>
-        </div>
-      </div>
-
       <div className="content-area">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
           <div className="lg:col-span-1">
