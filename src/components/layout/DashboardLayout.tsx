@@ -1,6 +1,6 @@
 'use client'
 
-import { Sidebar } from '@/components/layout/Sidebar'
+import { FloatingNavbar } from '@/components/layout/FloatingNavbar'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -10,7 +10,7 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children, userType }: DashboardLayoutProps) {
   return (
     <div className="app-container">
-      <Sidebar userType={userType} />
+      <FloatingNavbar userType={userType} />
       <main className="main-content">
         {children}
       </main>

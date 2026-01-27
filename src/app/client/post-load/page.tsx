@@ -34,26 +34,22 @@ export default function PostLoadPage() {
 
   return (
     <DashboardLayout userType="client">
-      {/* Header */}
-      <div className="top-header">
-        <div>
-          <h1 className="page-title">Post A Load</h1>
-          <p className="text-gray-600 mt-1">Create a new load posting and connect with verified drivers</p>
+      <div className="content-area">
+        {/* Page Header */}
+        <div className="page-header">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="page-title">Post A Load</h1>
+              <p className="page-subtitle">Create a new load posting and connect with verified drivers</p>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Content */}
-      <div className="content-area max-w-4xl mx-auto">
-        <div className="bg-white rounded-lg border border-gray-200 p-8">
+        <div className="card max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 27h24v9H12v-9zm3-6h18v4H15v-4z" fill="white"/>
-                <circle cx="18" cy="39" r="3" fill="white"/>
-                <circle cx="30" cy="39" r="3" fill="white"/>
-                <path d="M21 18h6v3h-6v-3z" fill="white"/>
-              </svg>
+            <div className="w-16 h-16 bg-gray-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+              {/* Simple truck representation */}
+              <div className="w-8 h-6 border-2 border-white rounded-sm"></div>
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Post Your Load</h2>
             <p className="text-gray-600">Fill out the details below to post your load and get competitive bids from verified drivers</p>
@@ -74,7 +70,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.loadType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                   >
                     <option value="">Select load type</option>
                     <option value="agricultural">Agricultural Products</option>
@@ -100,7 +96,7 @@ export default function PostLoadPage() {
                     step="0.1"
                     value={formData.weight}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="e.g. 5.5"
                   />
                 </div>
@@ -122,7 +118,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.origin}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="e.g. Harare, Zimbabwe"
                   />
                 </div>
@@ -138,7 +134,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.destination}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="e.g. Bulawayo, Zimbabwe"
                   />
                 </div>
@@ -155,7 +151,7 @@ export default function PostLoadPage() {
                     value={formData.pickupDate}
                     onChange={handleChange}
                     min={new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                   />
                 </div>
 
@@ -171,7 +167,7 @@ export default function PostLoadPage() {
                     value={formData.deliveryDate}
                     onChange={handleChange}
                     min={formData.pickupDate || new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                   />
                 </div>
               </div>
@@ -193,7 +189,7 @@ export default function PostLoadPage() {
                     min="0"
                     value={formData.maxRate}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="e.g. 1000"
                   />
                   <p className="text-sm text-gray-500 mt-1">Maximum amount you're willing to pay for this load</p>
@@ -209,7 +205,7 @@ export default function PostLoadPage() {
                     name="specialRequirements"
                     value={formData.specialRequirements}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="e.g. Refrigerated truck, Crane required, etc."
                   />
                 </div>
@@ -224,7 +220,7 @@ export default function PostLoadPage() {
                     rows={4}
                     value={formData.description}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="Provide additional details about the load..."
                   />
                 </div>
@@ -246,7 +242,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.contactName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="Your full name"
                   />
                 </div>
@@ -262,7 +258,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.contactPhone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="+263 XXX XXXX"
                   />
                 </div>
@@ -278,7 +274,7 @@ export default function PostLoadPage() {
                     required
                     value={formData.contactEmail}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="input-field"
                     placeholder="your.email@example.com"
                   />
                 </div>

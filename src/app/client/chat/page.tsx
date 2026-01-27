@@ -112,22 +112,22 @@ function ConversationList({ conversations, selectedConversation, onSelectConvers
   onSelectConversation: (id: string) => void
 }) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 h-full">
-      <div className="p-4 border-b border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900">Messages</h3>
+    <div className="card h-full">
+      <div className="card-header">
+        <h2 className="card-title">Messages</h2>
       </div>
       <div className="overflow-y-auto h-full">
         {conversations.map((conversation) => (
           <div
             key={conversation.id}
             onClick={() => onSelectConversation(conversation.id)}
-            className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${
-              selectedConversation === conversation.id ? 'bg-primary-50 border-primary-200' : ''
+            className={`list-item cursor-pointer transition-colors ${
+              selectedConversation === conversation.id ? 'bg-blue-50 border-blue-200' : ''
             }`}
           >
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <div className="w-12 h-12 bg-primary-900 rounded-full flex items-center justify-center text-white font-medium">
+                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center text-white font-medium">
                   {conversation.driverAvatar}
                 </div>
                 {conversation.isOnline && (
@@ -144,7 +144,7 @@ function ConversationList({ conversations, selectedConversation, onSelectConvers
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-gray-600 truncate">{conversation.lastMessage}</p>
                   {conversation.unreadCount > 0 && (
-                    <span className="bg-primary-900 text-white text-xs rounded-full px-2 py-1 ml-2">
+                    <span className="bg-gray-900 text-white text-xs rounded-full px-2 py-1 ml-2">
                       {conversation.unreadCount}
                     </span>
                   )}
@@ -162,11 +162,11 @@ function ConversationList({ conversations, selectedConversation, onSelectConvers
 function ChatWindow({ conversation }: { conversation: Conversation | null }) {
   if (!conversation) {
     return (
-      <div className="bg-white rounded-lg border border-gray-200 h-full flex items-center justify-center">
+      <div className="card h-full flex items-center justify-center">
         <div className="text-center">
-          <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
+          <div className="w-16 h-16 bg-gray-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
+            <div className="w-8 h-8 border-2 border-gray-400 rounded-full"></div>
+          </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Select a conversation</h3>
           <p className="text-gray-600">Choose a conversation to start messaging with drivers</p>
         </div>
@@ -175,12 +175,12 @@ function ChatWindow({ conversation }: { conversation: Conversation | null }) {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 h-full flex flex-col">
+    <div className="card h-full flex flex-col">
       {/* Chat Header */}
-      <div className="p-4 border-b border-gray-200">
+      <div className="card-header">
         <div className="flex items-center space-x-3">
           <div className="relative">
-            <div className="w-10 h-10 bg-primary-900 rounded-full flex items-center justify-center text-white font-medium">
+            <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white font-medium">
               {conversation.driverAvatar}
             </div>
             {conversation.isOnline && (
@@ -206,13 +206,13 @@ function ChatWindow({ conversation }: { conversation: Conversation | null }) {
             <div
               className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                 message.sender === 'client'
-                  ? 'bg-primary-900 text-white'
+                  ? 'bg-gray-900 text-white'
                   : 'bg-gray-200 text-gray-900'
               }`}
             >
               <p className="text-sm">{message.message}</p>
               <p className={`text-xs mt-1 ${
-                message.sender === 'client' ? 'text-primary-200' : 'text-gray-500'
+                message.sender === 'client' ? 'text-gray-300' : 'text-gray-500'
               }`}>
                 {message.timestamp}
               </p>
@@ -227,12 +227,10 @@ function ChatWindow({ conversation }: { conversation: Conversation | null }) {
           <input
             type="text"
             placeholder="Type your message..."
-            className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-field flex-1"
           />
-          <button className="btn-primary">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
+          <button className="btn-primary px-4 py-2">
+            Send
           </button>
         </div>
       </div>
@@ -246,16 +244,16 @@ export default function ClientChat() {
 
   return (
     <DashboardLayout userType="client">
-      {/* Header */}
-      <div className="top-header">
-        <div>
-          <h1 className="page-title">Chat</h1>
-          <p className="text-gray-600 mt-1">Communicate with your drivers in real-time</p>
-        </div>
-      </div>
-
-      {/* Content */}
       <div className="content-area">
+        {/* Page Header */}
+        <div className="page-header">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="page-title">Chat</h1>
+              <p className="page-subtitle">Communicate with your drivers in real-time</p>
+            </div>
+          </div>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
           {/* Conversations List */}
           <div className="lg:col-span-1">
