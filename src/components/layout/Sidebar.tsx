@@ -17,15 +17,6 @@ interface NavItem {
 
 const driverNavItems: NavItem[] = [
   {
-    label: 'Dashboard',
-    href: '/driver',
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6 6a1 1 0 01-1.414 0l-6-6A1 1 0 013 6.586V4z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-      </svg>
-    ),
-  },
-  {
     label: 'Load Board',
     href: '/driver/loads',
     icon: (
@@ -33,6 +24,15 @@ const driverNavItems: NavItem[] = [
         <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
         <path d="M4 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
         <path d="M8 11h4" stroke="currentColor" strokeWidth="1.5"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Analytics',
+    href: '/driver/analytics',
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6 6a1 1 0 01-1.414 0l-6-6A1 1 0 013 6.586V4z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
       </svg>
     ),
   },

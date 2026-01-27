@@ -15,8 +15,8 @@ interface NavItem {
 }
 
 const driverNavItems: NavItem[] = [
-  { label: 'Dashboard', href: '/driver' },
   { label: 'Load Board', href: '/driver/loads' },
+  { label: 'Analytics', href: '/driver/analytics' },
   { label: 'My Jobs', href: '/driver/jobs' },
   { label: 'Chat', href: '/driver/chat' },
 ]
