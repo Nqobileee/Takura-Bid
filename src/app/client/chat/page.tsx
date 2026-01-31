@@ -1,113 +1,22 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
+import { supabase } from '@/lib/supabase'
+import type { ChatMessage, Conversation } from '@/lib/supabase'
 
-interface ChatMessage {
-  id: string
-  sender: 'driver' | 'client'
-  message: string
-  timestamp: string
-  read: boolean
-}
-
-interface Conversation {
-  id: string
+interface ConversationWithDetails extends Conversation {
   driverName: string
   driverAvatar: string
   lastMessage: string
   lastMessageTime: string
   unreadCount: number
   isOnline: boolean
-  jobId: string
   messages: ChatMessage[]
 }
 
-const mockConversations: Conversation[] = [
-  {
-    id: 'conv1',
-    driverName: 'Tendai Mukamuri',
-    driverAvatar: 'TM',
-    lastMessage: 'I can pick up tomorrow morning at 8 AM',
-    lastMessageTime: '10:35 AM',
-    unreadCount: 1,
-    isOnline: true,
-    jobId: 'JOB001',
-    messages: [
-      {
-        id: 'msg1',
-        sender: 'client',
-        message: 'Hello! I saw you placed a bid on our load from Harare to Bulawayo.',
-        timestamp: '09:45 AM',
-        read: true
-      },
-      {
-        id: 'msg2',
-        sender: 'driver',
-        message: 'Hi! Yes, I\'m very interested in this job. I have experience with building materials transport.',
-        timestamp: '09:48 AM',
-        read: true
-      },
-      {
-        id: 'msg3',
-        sender: 'client',
-        message: 'Great! Can you tell me more about your truck specifications?',
-        timestamp: '10:15 AM',
-        read: true
-      },
-      {
-        id: 'msg4',
-        sender: 'driver',
-        message: 'I have a 10-ton capacity truck with all necessary equipment for safe transport.',
-        timestamp: '10:18 AM',
-        read: true
-      },
-      {
-        id: 'msg5',
-        sender: 'client',
-        message: 'When can you pick up the load?',
-        timestamp: '10:30 AM',
-        read: true
-      },
-      {
-        id: 'msg6',
-        sender: 'driver',
-        message: 'I can pick up tomorrow morning at 8 AM',
-        timestamp: '10:35 AM',
-        read: false
-      }
-    ]
-  },
-  {
-    id: 'conv2',
-    driverName: 'James Mwangi',
-    driverAvatar: 'JM',
-    lastMessage: 'Thank you for choosing our service!',
-    lastMessageTime: 'Yesterday',
-    unreadCount: 0,
-    isOnline: false,
-    jobId: 'JOB002',
-    messages: [
-      {
-        id: 'msg7',
-        sender: 'client',
-        message: 'The delivery was completed perfectly. Thank you for the excellent service!',
-        timestamp: 'Yesterday 4:30 PM',
-        read: true
-      },
-      {
-        id: 'msg8',
-        sender: 'driver',
-        message: 'Thank you for choosing our service! It was a pleasure working with you.',
-        timestamp: 'Yesterday 4:35 PM',
-        read: true
-      }
-    ]
-  }
-]
-
 function ConversationList({ conversations, selectedConversation, onSelectConversation }: {
-  conversations: Conversation[]
+  conversations: ConversationWithDetails[]
   selectedConversation: string | null
   onSelectConversation: (id: string) => void
 }) {
@@ -117,49 +26,76 @@ function ConversationList({ conversations, selectedConversation, onSelectConvers
         <h2 className="card-title">Messages</h2>
       </div>
       <div className="flex-1 overflow-y-auto">
-        {conversations.map((conversation) => (
-          <div
-            key={conversation.id}
-            onClick={() => onSelectConversation(conversation.id)}
-            className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${
-              selectedConversation === conversation.id ? 'bg-blue-50 border-blue-200' : ''
-            }`}
-          >
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center text-white font-medium">
-                  {conversation.driverAvatar}
-                </div>
-                {conversation.isOnline && (
-                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-semibold text-gray-900 truncate">
-                    {conversation.driverName}
-                  </h4>
-                  <span className="text-xs text-gray-500">{conversation.lastMessageTime}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-sm text-gray-600 truncate">{conversation.lastMessage}</p>
-                  {conversation.unreadCount > 0 && (
-                    <span className="bg-gray-900 text-white text-xs rounded-full px-2 py-1 ml-2">
-                      {conversation.unreadCount}
-                    </span>
+        {conversations.length === 0 ? (
+          <div className="p-4 text-center text-gray-500">
+            <p>No conversations yet</p>
+          </div>
+        ) : (
+          conversations.map((conversation) => (
+            <div
+              key={conversation.id}
+              onClick={() => onSelectConversation(conversation.id)}
+              className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${
+                selectedConversation === conversation.id ? 'bg-blue-50 border-blue-200' : ''
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center text-white font-medium">
+                    {conversation.driverAvatar}
+                  </div>
+                  {conversation.isOnline && (
+                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
                   )}
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Job: {conversation.jobId}</p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-semibold text-gray-900 truncate">
+                      {conversation.driverName}
+                    </h4>
+                    <span className="text-xs text-gray-500">{conversation.lastMessageTime}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-gray-600 truncate">{conversation.lastMessage}</p>
+                    {conversation.unreadCount > 0 && (
+                      <span className="bg-gray-900 text-white text-xs rounded-full px-2 py-1 ml-2">
+                        {conversation.unreadCount}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">Job: {conversation.job_id}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   )
 }
 
-function ChatWindow({ conversation }: { conversation: Conversation | null }) {
+function ChatWindow({ conversation, onSendMessage }: { 
+  conversation: ConversationWithDetails | null
+  onSendMessage: (message: string) => void
+}) {
+  const [inputValue, setInputValue] = useState('')
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [conversation?.messages])
+
+  const handleSend = () => {
+    if (inputValue.trim() && conversation) {
+      onSendMessage(inputValue)
+      setInputValue('')
+    }
+  }
+
   if (!conversation) {
     return (
       <div className="card h-full flex items-center justify-center">
@@ -190,7 +126,7 @@ function ChatWindow({ conversation }: { conversation: Conversation | null }) {
           <div>
             <h3 className="text-lg font-semibold text-gray-900">{conversation.driverName}</h3>
             <p className="text-sm text-gray-600">
-              {conversation.isOnline ? 'Online' : 'Offline'} • Job: {conversation.jobId}
+              {conversation.isOnline ? 'Online' : 'Offline'} • Job: {conversation.job_id}
             </p>
           </div>
         </div>
@@ -198,27 +134,34 @@ function ChatWindow({ conversation }: { conversation: Conversation | null }) {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {conversation.messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${message.sender === 'client' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                message.sender === 'client'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-200 text-gray-900'
-              }`}
-            >
-              <p className="text-sm">{message.message}</p>
-              <p className={`text-xs mt-1 ${
-                message.sender === 'client' ? 'text-gray-300' : 'text-gray-500'
-              }`}>
-                {message.timestamp}
-              </p>
-            </div>
+        {conversation.messages.length === 0 ? (
+          <div className="flex items-center justify-center h-full text-gray-500">
+            <p>No messages yet. Start a conversation!</p>
           </div>
-        ))}
+        ) : (
+          conversation.messages.map((message) => (
+            <div
+              key={message.id}
+              className={`flex ${message.sender_id === conversation.client_id ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                  message.sender_id === conversation.client_id
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-gray-200 text-gray-900'
+                }`}
+              >
+                <p className="text-sm">{message.content}</p>
+                <p className={`text-xs mt-1 ${
+                  message.sender_id === conversation.client_id ? 'text-gray-300' : 'text-gray-500'
+                }`}>
+                  {new Date(message.created_at).toLocaleTimeString()}
+                </p>
+              </div>
+            </div>
+          ))
+        )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Message Input */}
@@ -227,9 +170,12 @@ function ChatWindow({ conversation }: { conversation: Conversation | null }) {
           <input
             type="text"
             placeholder="Type your message..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             className="input-field flex-1"
           />
-          <button className="btn-primary px-4 py-2">
+          <button onClick={handleSend} className="btn-primary px-4 py-2">
             Send
           </button>
         </div>
@@ -239,8 +185,122 @@ function ChatWindow({ conversation }: { conversation: Conversation | null }) {
 }
 
 export default function ClientChat() {
+  const [conversations, setConversations] = useState<ConversationWithDetails[]>([])
   const [selectedConversation, setSelectedConversation] = useState<string | null>(null)
-  const selectedConv = mockConversations.find(c => c.id === selectedConversation)
+  const [loading, setLoading] = useState(true)
+  
+  // NOTE: Replace with actual user ID from auth system
+  const currentUserId = 'client-user-id-here'
+
+  useEffect(() => {
+    fetchConversations()
+    setupRealtimeListeners()
+  }, [])
+
+  const fetchConversations = async () => {
+    try {
+      const { data: conversations, error } = await supabase
+        .from('conversations')
+        .select('*')
+
+      if (error) throw error
+
+      const enrichedConversations: ConversationWithDetails[] = await Promise.all(
+        (conversations || []).map(async (conv) => {
+          // Fetch driver details
+          const { data: driver } = await supabase
+            .from('users')
+            .select('*')
+            .eq('id', conv.driver_id)
+            .single()
+
+          // Fetch messages
+          const { data: messages } = await supabase
+            .from('messages')
+            .select('*')
+            .eq('conversation_id', conv.id)
+            .order('created_at', { ascending: true })
+
+          const lastMessage = messages?.[messages.length - 1]
+
+          return {
+            ...conv,
+            driverName: driver?.name || 'Unknown Driver',
+            driverAvatar: driver?.avatar || driver?.name?.substring(0, 2).toUpperCase() || 'XX',
+            lastMessage: lastMessage?.content || 'No messages yet',
+            lastMessageTime: lastMessage ? new Date(lastMessage.created_at).toLocaleTimeString() : '',
+            unreadCount: messages?.filter(m => !m.read && m.sender_id !== currentUserId).length || 0,
+            isOnline: true, // TODO: Implement online status tracking
+            messages: messages || []
+          }
+        })
+      )
+
+      setConversations(enrichedConversations)
+      setLoading(false)
+    } catch (error) {
+      console.error('Error fetching conversations:', error)
+      setLoading(false)
+    }
+  }
+
+  const setupRealtimeListeners = () => {
+    // Listen for new messages
+    const messageSubscription = supabase
+      .channel('messages')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'messages'
+        },
+        (payload) => {
+          fetchConversations()
+        }
+      )
+      .subscribe()
+
+    return () => {
+      messageSubscription.unsubscribe()
+    }
+  }
+
+  const handleSendMessage = async (content: string) => {
+    if (!selectedConversation || !content.trim()) return
+
+    try {
+      const { error } = await supabase
+        .from('messages')
+        .insert({
+          conversation_id: selectedConversation,
+          sender_id: currentUserId,
+          content: content.trim(),
+          read: false
+        })
+
+      if (error) throw error
+
+      // Refresh conversations to show new message
+      fetchConversations()
+    } catch (error) {
+      console.error('Error sending message:', error)
+    }
+  }
+
+  const selectedConv = conversations.find(c => c.id === selectedConversation)
+
+  if (loading) {
+    return (
+      <DashboardLayout userType="client">
+        <div className="content-area">
+          <div className="flex items-center justify-center h-96">
+            <p className="text-gray-500">Loading conversations...</p>
+          </div>
+        </div>
+      </DashboardLayout>
+    )
+  }
 
   return (
     <DashboardLayout userType="client">
@@ -258,7 +318,7 @@ export default function ClientChat() {
           {/* Conversations List */}
           <div className="lg:col-span-1 h-96 lg:h-[600px]">
             <ConversationList
-              conversations={mockConversations}
+              conversations={conversations}
               selectedConversation={selectedConversation}
               onSelectConversation={setSelectedConversation}
             />
@@ -266,7 +326,10 @@ export default function ClientChat() {
 
           {/* Chat Window */}
           <div className="lg:col-span-2 h-96 lg:h-[600px]">
-            <ChatWindow conversation={selectedConv || null} />
+            <ChatWindow 
+              conversation={selectedConv || null}
+              onSendMessage={handleSendMessage}
+            />
           </div>
         </div>
       </div>
