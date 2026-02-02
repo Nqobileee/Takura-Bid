@@ -26,8 +26,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check for existing session
+    // Check for existing session with timeout
     const initializeAuth = async () => {
+      // Set a timeout to prevent infinite loading
+      const timeout = setTimeout(() => {
+        setIsLoading(false)
+      }, 3000)
+
       try {
         const { data: { session } } = await supabase.auth.getSession()
         
@@ -52,6 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error('Error initializing auth:', error)
       } finally {
+        clearTimeout(timeout)
         setIsLoading(false)
       }
     }
