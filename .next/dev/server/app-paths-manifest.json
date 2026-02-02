@@ -1,1 +1,17 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/auth/login/page": "app/auth/login/page.js",
+  "/client/analytics/page": "app/client/analytics/page.js",
+  "/client/chat/page": "app/client/chat/page.js",
+  "/client/loads/page": "app/client/loads/page.js",
+  "/client/page": "app/client/page.js",
+  "/client/post-load/page": "app/client/post-load/page.js",
+  "/client/profile/page": "app/client/profile/page.js",
+  "/driver/analytics/page": "app/driver/analytics/page.js",
+  "/driver/chat/page": "app/driver/chat/page.js",
+  "/driver/jobs/page": "app/driver/jobs/page.js",
+  "/driver/loads/page": "app/driver/loads/page.js",
+  "/driver/page": "app/driver/page.js",
+  "/driver/profile/page": "app/driver/profile/page.js",
+  "/page": "app/page.js"
+}

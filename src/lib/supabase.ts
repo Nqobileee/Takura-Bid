@@ -1,24 +1,10 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-// Create a lazy-loaded supabase client to avoid build-time errors
-let supabaseInstance: SupabaseClient | null = null
-
-export const supabase = (() => {
-  if (!supabaseInstance && supabaseUrl && supabaseAnonKey) {
-    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey)
-  }
-  if (!supabaseInstance) {
-    // Return a mock client for build time - actual client will be created at runtime
-    return createClient(
-      supabaseUrl || 'https://placeholder.supabase.co',
-      supabaseAnonKey || 'placeholder-key'
-    )
-  }
-  return supabaseInstance
-})()
+// Create Supabase client - env vars are required and injected at build time by Vercel
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Types
 export interface User {
