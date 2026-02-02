@@ -376,7 +376,7 @@ export function EarningsDashboard({ userType }: EarningsDashboardProps) {
                 <YAxis stroke="#9ca3af" fontSize={12} tickFormatter={(v) => `$${v}`} />
                 <Tooltip
                   contentStyle={{ borderRadius: 12, border: '1px solid #e5e7eb' }}
-                  formatter={(value: number) => [formatCurrency(value), 'Earnings']}
+                  formatter={(value) => [formatCurrency(value as number), 'Earnings']}
                 />
                 <Area
                   type="monotone"
@@ -409,9 +409,8 @@ export function EarningsDashboard({ userType }: EarningsDashboardProps) {
                   >
                     {summary.paymentBreakdown.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                    ))}n                  </Pie>
+                  <Tooltip formatter={(value) => formatCurrency(value as number)} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -444,7 +443,7 @@ export function EarningsDashboard({ userType }: EarningsDashboardProps) {
               <YAxis stroke="#9ca3af" fontSize={12} tickFormatter={(v) => `$${v}`} />
               <Tooltip
                 contentStyle={{ borderRadius: 12, border: '1px solid #e5e7eb' }}
-                formatter={(value: number, name: string) => [formatCurrency(value), name]}
+                formatter={(value, name) => [formatCurrency(value as number), name as string]}
               />
               <Legend />
               <Bar dataKey="earnings" name={userType === 'driver' ? 'Earnings' : 'Spending'} fill="#10b981" radius={[4, 4, 0, 0]} />
