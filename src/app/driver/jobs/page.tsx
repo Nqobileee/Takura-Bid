@@ -87,7 +87,7 @@ const mockJobs: Job[] = [
 function getStatusBadge(status: Job['status']) {
   switch (status) {
     case 'active':
-      return <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Active</span>
+      return <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs font-medium rounded-full">Active</span>
     case 'in_transit':
       return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">In Transit</span>
     case 'completed':
@@ -228,7 +228,7 @@ export default function MyJobs() {
                       key={i} 
                       className={`relative text-center py-2 text-sm border rounded ${
                         isToday 
-                          ? 'bg-blue-500 text-white border-blue-500' 
+                          ? 'bg-orange-500 text-white border-orange-500' 
                           : isCurrentMonth
                             ? hasJob
                               ? 'bg-yellow-50 border-yellow-200 text-yellow-800'
@@ -281,22 +281,22 @@ export default function MyJobs() {
                   <path d="M50 80 L350 80 L350 250 L50 250 Z" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="2"/>
                   
                   {/* Cities */}
-                  <circle cx="120" cy="120" r="4" fill="#3b82f6"/>
+                  <circle cx="120" cy="120" r="4" fill="#f97316"/>
                   <text x="128" y="125" fontSize="10" fill="#374151">Harare</text>
                   
-                  <circle cx="80" cy="180" r="4" fill="#3b82f6"/>
+                  <circle cx="80" cy="180" r="4" fill="#f97316"/>
                   <text x="88" y="185" fontSize="10" fill="#374151">Bulawayo</text>
                   
-                  <circle cx="150" cy="160" r="4" fill="#3b82f6"/>
+                  <circle cx="150" cy="160" r="4" fill="#f97316"/>
                   <text x="158" y="165" fontSize="10" fill="#374151">Gweru</text>
                   
-                  <circle cx="220" cy="140" r="4" fill="#3b82f6"/>
+                  <circle cx="220" cy="140" r="4" fill="#f97316"/>
                   <text x="228" y="145" fontSize="10" fill="#374151">Mutare</text>
                   
-                  <circle cx="120" cy="220" r="4" fill="#3b82f6"/>
+                  <circle cx="120" cy="220" r="4" fill="#f97316"/>
                   <text x="128" y="225" fontSize="10" fill="#374151">Masvingo</text>
                   
-                  <circle cx="60" cy="140" r="4" fill="#3b82f6"/>
+                  <circle cx="60" cy="140" r="4" fill="#f97316"/>
                   <text x="68" y="145" fontSize="10" fill="#374151">Victoria Falls</text>
                   
                   {/* Routes */}

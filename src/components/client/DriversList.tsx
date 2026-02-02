@@ -107,7 +107,7 @@ function DriverCard({ driver, onSelect }: DriverCardProps) {
       <div className="flex flex-col lg:flex-row lg:items-start space-y-4 lg:space-y-0 lg:space-x-4">
         {/* Profile Image and Basic Info */}
         <div className="flex-shrink-0 flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+          <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
             {driver.name.split(' ').map(n => n[0]).join('')}
           </div>
           
@@ -207,7 +207,7 @@ export function DriversList() {
           <input 
             type="text" 
             placeholder="Search by skills, location..." 
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent w-full sm:w-64"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full sm:w-64"
           />
           <button className="btn-secondary whitespace-nowrap">
             <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
