@@ -1,28 +1,11 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+// For build time, use placeholder values that will be replaced at runtime
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key'
 
-// Create Supabase client with lazy initialization for SSR/build compatibility
-let _supabase: SupabaseClient | null = null
-
-export const supabase: SupabaseClient = new Proxy({} as SupabaseClient, {
-  get(_, prop) {
-    if (!_supabase) {
-      if (!supabaseUrl || !supabaseAnonKey) {
-        // During build time, return a dummy that won't crash
-        if (typeof window === 'undefined') {
-          _supabase = createClient('https://placeholder.supabase.co', 'placeholder')
-        } else {
-          throw new Error('Supabase environment variables are not configured')
-        }
-      } else {
-        _supabase = createClient(supabaseUrl, supabaseAnonKey)
-      }
-    }
-    return (_supabase as any)[prop]
-  }
-})
+// Create Supabase client
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Types
 export interface User {
