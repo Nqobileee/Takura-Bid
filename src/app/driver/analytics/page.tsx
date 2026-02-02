@@ -155,7 +155,7 @@ export default function DriverAnalytics() {
 
         {/* Tab Content */}
         {activeTab === 'earnings' && (
-          <EarningsDashboard userType="driver" userId={user?.id} />
+          <EarningsDashboard userType="driver" />
         )}
 
         {activeTab === 'calculator' && (
