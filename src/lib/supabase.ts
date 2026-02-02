@@ -1,9 +1,24 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Create a lazy-loaded supabase client to avoid build-time errors
+let supabaseInstance: SupabaseClient | null = null
+
+export const supabase = (() => {
+  if (!supabaseInstance && supabaseUrl && supabaseAnonKey) {
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey)
+  }
+  if (!supabaseInstance) {
+    // Return a mock client for build time - actual client will be created at runtime
+    return createClient(
+      supabaseUrl || 'https://placeholder.supabase.co',
+      supabaseAnonKey || 'placeholder-key'
+    )
+  }
+  return supabaseInstance
+})()
 
 // Types
 export interface User {

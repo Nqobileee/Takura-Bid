@@ -1,5 +1,9 @@
 'use client'
 
+import dynamic from 'next/dynamic'
+export const dynamicParams = true
+export const revalidate = 0
+
 import { useState, useEffect, useRef } from 'react'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { useAuth } from '@/contexts/AuthContext'
