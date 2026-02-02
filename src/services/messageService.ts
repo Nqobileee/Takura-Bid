@@ -101,6 +101,36 @@ export const messageService = {
     if (error) throw error
   },
 
+  // Delete a specific message
+  async deleteMessage(messageId: string, senderId: string): Promise<void> {
+    const { error } = await supabase
+      .from('messages')
+      .delete()
+      .eq('id', messageId)
+      .eq('sender_id', senderId) // Only allow deleting own messages
+
+    if (error) throw error
+  },
+
+  // Delete entire conversation (all messages)
+  async deleteConversation(conversationId: string): Promise<void> {
+    // First delete all messages
+    const { error: messagesError } = await supabase
+      .from('messages')
+      .delete()
+      .eq('conversation_id', conversationId)
+
+    if (messagesError) throw messagesError
+
+    // Then delete the conversation
+    const { error: convError } = await supabase
+      .from('conversations')
+      .delete()
+      .eq('id', conversationId)
+
+    if (convError) throw convError
+  },
+
   // Subscribe to new messages in a conversation
   subscribeToMessages(conversationId: string, callback: (message: ChatMessage) => void): () => void {
     const subscription = supabase
