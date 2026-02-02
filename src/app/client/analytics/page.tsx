@@ -179,7 +179,7 @@ export default function ClientAnalytics() {
 
         {/* Tab Content */}
         {activeTab === 'spending' && (
-          <EarningsDashboard userType="client" userId={user?.id} />
+          <EarningsDashboard userType="client" />
         )}
 
         {activeTab === 'calculator' && (
