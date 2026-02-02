@@ -1,10 +1,28 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
-// Create Supabase client - env vars are required and injected at build time by Vercel
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Create Supabase client with lazy initialization for SSR/build compatibility
+let _supabase: SupabaseClient | null = null
+
+export const supabase: SupabaseClient = new Proxy({} as SupabaseClient, {
+  get(_, prop) {
+    if (!_supabase) {
+      if (!supabaseUrl || !supabaseAnonKey) {
+        // During build time, return a dummy that won't crash
+        if (typeof window === 'undefined') {
+          _supabase = createClient('https://placeholder.supabase.co', 'placeholder')
+        } else {
+          throw new Error('Supabase environment variables are not configured')
+        }
+      } else {
+        _supabase = createClient(supabaseUrl, supabaseAnonKey)
+      }
+    }
+    return (_supabase as any)[prop]
+  }
+})
 
 // Types
 export interface User {
