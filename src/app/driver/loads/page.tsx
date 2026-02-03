@@ -125,7 +125,7 @@ function LoadListItem({ load }: { load: Load }) {
       </div>
 
       {/* Main title */}
-      <h3 className="text-xl font-semibold text-gray-900 mb-3 hover:text-orange-600 cursor-pointer">
+      <h3 className="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer">
         {load.loadType} Transport
       </h3>
 
@@ -177,7 +177,7 @@ function LoadListItem({ load }: { load: Load }) {
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0">
           {/* Payment verified badge */}
           <div className="flex items-center space-x-1">
-            <div className="w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
+            <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center">
               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>

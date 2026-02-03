@@ -1,331 +1,349 @@
-'use client'
-
-import { useState, useEffect } from 'react'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
-import { useAuth } from '@/contexts/AuthContext'
-import { analyticsService, type DriverAnalyticsData } from '@/services/analyticsService'
-import { EarningsDashboard } from '@/components/analytics/EarningsDashboard'
-import { FreightCalculator } from '@/components/freight/FreightCalculator'
-import { 
-  MessagesAreaChart, 
-  MessagesBarChart, 
-  WeeklyActivityChart,
-  ResponseTimeGauge 
-} from '@/components/charts/AnalyticsCharts'
-
-type TabType = 'earnings' | 'communication' | 'calculator'
-
-function StatCard({ value, label, icon }: { 
-  value: string | number
-  label: string
-  icon?: React.ReactNode
-}) {
-  return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-gray-600">{label}</p>
-          <p className="text-3xl font-bold text-gray-900 mt-1">{value}</p>
-        </div>
-        {icon && (
-          <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600">
-            {icon}
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
 
 export default function DriverAnalytics() {
-  const { user, isLoading: authLoading } = useAuth()
-  const [analytics, setAnalytics] = useState<DriverAnalyticsData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<TabType>('earnings')
-
-  useEffect(() => {
-    if (!user) return
-
-    const loadAnalytics = async () => {
-      try {
-        const data = await analyticsService.getDriverAnalytics(user.id)
-        setAnalytics(data)
-      } catch (error) {
-        console.error('Error loading analytics:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadAnalytics()
-  }, [user])
-
-  if (authLoading || loading) {
-    return (
-      <DashboardLayout userType="driver">
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-900"></div>
-        </div>
-      </DashboardLayout>
-    )
-  }
-
-  if (!user) {
-    return (
-      <DashboardLayout userType="driver">
-        <div className="text-center py-12">
-          <p className="text-gray-600">Please log in to view analytics.</p>
-        </div>
-      </DashboardLayout>
-    )
-  }
-
-  const defaultAnalytics: DriverAnalyticsData = analytics || {
-    totalConversations: 0,
-    totalMessagesSent: 0,
-    totalMessagesReceived: 0,
-    avgResponseTime: 'N/A',
-    profileViews: 0,
-    profileClicks: 0,
-    clickThroughRate: 0,
-    dailyStats: [],
-    recentActivity: []
-  }
-
-  // Transform dailyStats for charts
-  const messageChartData = defaultAnalytics.dailyStats.slice(-7).map(stat => ({
-    name: new Date(stat.stat_date).toLocaleDateString('en-US', { weekday: 'short' }),
-    sent: stat.messages_sent,
-    received: stat.messages_received
-  }))
-
-  const weeklyActivityData = defaultAnalytics.dailyStats.slice(-7).map(stat => ({
-    name: new Date(stat.stat_date).toLocaleDateString('en-US', { weekday: 'short' }),
-    messages: stat.messages_sent + stat.messages_received,
-    conversations: stat.conversations_started
-  }))
-
-  // Parse response time for gauge
-  const responseTimeMinutes = typeof defaultAnalytics.avgResponseTime === 'string' && defaultAnalytics.avgResponseTime !== 'N/A'
-    ? parseInt(defaultAnalytics.avgResponseTime) || 15
-    : 15
-
   return (
     <DashboardLayout userType="driver">
       <div className="content-area">
-        {/* Header with Tabs */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Analytics & Tools</h1>
-          <p className="text-gray-600 mt-2">Track earnings, performance, and calculate freight costs</p>
-          
-          {/* Tab Navigation */}
-          <div className="flex space-x-1 mt-6 bg-gray-100 rounded-xl p-1 w-fit">
-            <button
-              onClick={() => setActiveTab('earnings')}
-              className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === 'earnings'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              💰 Earnings
-            </button>
-            <button
-              onClick={() => setActiveTab('communication')}
-              className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === 'communication'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              💬 Communication
-            </button>
-            <button
-              onClick={() => setActiveTab('calculator')}
-              className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === 'calculator'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              🧮 Calculator
-            </button>
+        {/* Page Header */}
+        <div className="page-header">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h1 className="page-title">Analytics</h1>
+              <p className="page-subtitle">Track your performance metrics and insights.</p>
+            </div>
+          </div>
+        </div>
+        {/* Key Metrics */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">$27,000</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Total Earnings</div>
+            </div>
+          </div>
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">4.8</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Average Rating</div>
+            </div>
+          </div>
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">45,200</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Total Kilometres</div>
+            </div>
+          </div>
+          <div className="card">
+            <div className="card-content p-4 lg:p-6 text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Top 5%</div>
+              <div className="text-xs lg:text-sm font-medium text-gray-600">Top Rated Driver</div>
+            </div>
           </div>
         </div>
 
-        {/* Tab Content */}
-        {activeTab === 'earnings' && (
-          <EarningsDashboard userType="driver" userId={user?.id} />
-        )}
-
-        {activeTab === 'calculator' && (
-          <FreightCalculator />
-        )}
-
-        {activeTab === 'communication' && (
-          <>
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard 
-            value={defaultAnalytics.totalConversations} 
-            label="Total Conversations"
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-            }
-          />
-          <StatCard 
-            value={defaultAnalytics.totalMessagesSent} 
-            label="Messages Sent"
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-            }
-          />
-          <StatCard 
-            value={defaultAnalytics.totalMessagesReceived} 
-            label="Messages Received"
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-              </svg>
-            }
-          />
-          <StatCard 
-            value={`${defaultAnalytics.avgResponseTime}s`} 
-            label="Avg Response Time"
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            }
-          />
-        </div>
-
-        {/* Charts Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {/* Messages Over Time Chart */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-gray-900">Messages Over Time</h2>
-              <div className="flex items-center space-x-4 text-sm">
+        {/* Analytics Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:mb-8">
+          {/* Views & Clicks Chart */}
+          <div className="card">
+            <div className="card-header">
+              <h2 className="card-title">Profile Views & Clicks</h2>
+            </div>
+            <div className="p-6">
+              <div className="mb-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm text-gray-600">Total Views: 2,847</span>
+                  <span className="text-sm text-gray-600">Total Clicks: 892</span>
+                </div>
+              </div>
+              <div className="h-64 bg-gray-50 rounded-lg p-4">
+                <svg viewBox="0 0 400 200" className="w-full h-full">
+                  {/* Grid lines */}
+                  <defs>
+                    <pattern id="grid" width="40" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M 40 0 L 0 0 0 20" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#grid)" />
+                  
+                  {/* Views line (blue) */}
+                  <polyline
+                    fill="none"
+                    stroke="#3b82f6"
+                    strokeWidth="2"
+                    points="20,150 60,120 100,140 140,100 180,110 220,80 260,90 300,60 340,70 380,50"
+                  />
+                  
+                  {/* Clicks line (green) */}
+                  <polyline
+                    fill="none"
+                    stroke="#10b981"
+                    strokeWidth="2"
+                    points="20,170 60,160 100,165 140,140 180,145 220,130 260,135 300,120 340,125 380,110"
+                  />
+                  
+                  {/* Data points for Views */}
+                  <circle cx="20" cy="150" r="3" fill="#3b82f6"/>
+                  <circle cx="100" cy="140" r="3" fill="#3b82f6"/>
+                  <circle cx="180" cy="110" r="3" fill="#3b82f6"/>
+                  <circle cx="260" cy="90" r="3" fill="#3b82f6"/>
+                  <circle cx="340" cy="70" r="3" fill="#3b82f6"/>
+                  
+                  {/* Data points for Clicks */}
+                  <circle cx="20" cy="170" r="3" fill="#10b981"/>
+                  <circle cx="100" cy="165" r="3" fill="#10b981"/>
+                  <circle cx="180" cy="145" r="3" fill="#10b981"/>
+                  <circle cx="260" cy="135" r="3" fill="#10b981"/>
+                  <circle cx="340" cy="125" r="3" fill="#10b981"/>
+                </svg>
+              </div>
+              <div className="flex justify-center space-x-6 mt-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                  <span className="text-gray-600">Sent</span>
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Profile Views</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-600">Received</span>
+                  <span className="text-sm text-gray-600">Profile Clicks</span>
                 </div>
               </div>
             </div>
-            <MessagesAreaChart data={messageChartData} />
           </div>
 
-          {/* Weekly Activity Chart */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6">Weekly Activity</h2>
-            <WeeklyActivityChart data={weeklyActivityData} />
+          {/* Earnings Over Time Chart */}
+          <div className="card">
+            <div className="card-header">
+              <h2 className="card-title">Earnings Over Time</h2>
+            </div>
+            <div className="p-6">
+              <div className="mb-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm text-gray-600">This Month: $8,500</span>
+                  <span className="text-sm text-gray-600">Weekly Avg: $2,125</span>
+                </div>
+              </div>
+              <div className="h-64 bg-gray-50 rounded-lg p-4">
+                <svg viewBox="0 0 400 200" className="w-full h-full">
+                  {/* Grid lines */}
+                  <defs>
+                    <pattern id="grid2" width="40" height="25" patternUnits="userSpaceOnUse">
+                      <path d="M 40 0 L 0 0 0 25" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#grid2)" />
+                  
+                  {/* Y-axis labels */}
+                  <text x="15" y="20" fontSize="10" fill="#6b7280">$4k</text>
+                  <text x="15" y="70" fontSize="10" fill="#6b7280">$3k</text>
+                  <text x="15" y="120" fontSize="10" fill="#6b7280">$2k</text>
+                  <text x="15" y="170" fontSize="10" fill="#6b7280">$1k</text>
+                  
+                  {/* X-axis labels */}
+                  <text x="40" y="195" fontSize="10" fill="#6b7280">Week 1</text>
+                  <text x="120" y="195" fontSize="10" fill="#6b7280">Week 2</text>
+                  <text x="200" y="195" fontSize="10" fill="#6b7280">Week 3</text>
+                  <text x="280" y="195" fontSize="10" fill="#6b7280">Week 4</text>
+                  
+                  {/* Earnings bars */}
+                  <rect x="35" y="80" width="30" height="100" fill="#10b981" rx="2"/>
+                  <rect x="115" y="60" width="30" height="120" fill="#10b981" rx="2"/>
+                  <rect x="195" y="40" width="30" height="140" fill="#10b981" rx="2"/>
+                  <rect x="275" y="70" width="30" height="110" fill="#10b981" rx="2"/>
+                  
+                  {/* Values on bars */}
+                  <text x="50" y="75" textAnchor="middle" fontSize="12" fill="#374151" fontWeight="bold">$1.8k</text>
+                  <text x="130" y="55" textAnchor="middle" fontSize="12" fill="#374151" fontWeight="bold">$2.4k</text>
+                  <text x="210" y="35" textAnchor="middle" fontSize="12" fill="#374151" fontWeight="bold">$2.8k</text>
+                  <text x="290" y="65" textAnchor="middle" fontSize="12" fill="#374151" fontWeight="bold">$2.2k</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Additional Analytics */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          {/* Load Acceptance vs Decline Rate */}
+          <div className="card">
+            <div className="card-header">
+              <h2 className="card-title">Load Acceptance vs. Decline Rate</h2>
+            </div>
+            <div className="p-6">
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">28</div>
+                  <div className="text-sm text-gray-600">Accepted</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-red-600">12</div>
+                  <div className="text-sm text-gray-600">Declined</div>
+                </div>
+              </div>
+              <div className="h-48 bg-gray-50 rounded-lg p-4 flex items-center justify-center">
+                <svg viewBox="0 0 200 200" className="w-40 h-40">
+                  {/* Pie chart circle */}
+                  <circle cx="100" cy="100" r="80" fill="transparent" stroke="#10b981" strokeWidth="20" strokeDasharray="140 22" strokeDashoffset="25" transform="rotate(-90 100 100)"/>
+                  <circle cx="100" cy="100" r="80" fill="transparent" stroke="#ef4444" strokeWidth="20" strokeDasharray="42 120" strokeDashoffset="-137" transform="rotate(-90 100 100)"/>
+                  
+                  {/* Center text */}
+                  <text x="100" y="95" textAnchor="middle" fontSize="20" fill="#374151" fontWeight="bold">70%</text>
+                  <text x="100" y="115" textAnchor="middle" fontSize="12" fill="#6b7280">Accepted</text>
+                </svg>
+              </div>
+              <div className="flex justify-center space-x-6 mt-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Accepted (70%)</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Declined (30%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Miles Driven vs Pay Per Mile */}
+          <div className="card">
+            <div className="card-header">
+              <h2 className="card-title">Miles Driven vs. Pay Per Mile</h2>
+            </div>
+            <div className="p-6">
+              <div className="mb-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm text-gray-600">Average: $1.85/mile</span>
+                  <span className="text-sm text-gray-600">Best: $2.40/mile</span>
+                </div>
+              </div>
+              <div className="h-48 bg-gray-50 rounded-lg p-4">
+                <svg viewBox="0 0 350 150" className="w-full h-full">
+                  {/* Grid */}
+                  <defs>
+                    <pattern id="grid3" width="35" height="15" patternUnits="userSpaceOnUse">
+                      <path d="M 35 0 L 0 0 0 15" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#grid3)" />
+                  
+                  {/* Scatter plot points */}
+                  <circle cx="50" cy="80" r="4" fill="#3b82f6"/>
+                  <circle cx="80" cy="60" r="4" fill="#3b82f6"/>
+                  <circle cx="120" cy="90" r="4" fill="#3b82f6"/>
+                  <circle cx="150" cy="50" r="4" fill="#3b82f6"/>
+                  <circle cx="180" cy="70" r="4" fill="#3b82f6"/>
+                  <circle cx="220" cy="40" r="4" fill="#3b82f6"/>
+                  <circle cx="250" cy="85" r="4" fill="#3b82f6"/>
+                  <circle cx="280" cy="55" r="4" fill="#3b82f6"/>
+                  <circle cx="310" cy="75" r="4" fill="#3b82f6"/>
+                  
+                  {/* Trend line */}
+                  <polyline
+                    fill="none"
+                    stroke="#10b981"
+                    strokeWidth="2"
+                    strokeDasharray="5,5"
+                    points="30,100 320,30"
+                  />
+                  
+                  {/* Axis labels */}
+                  <text x="15" y="30" fontSize="8" fill="#6b7280">$2.50</text>
+                  <text x="15" y="60" fontSize="8" fill="#6b7280">$2.00</text>
+                  <text x="15" y="90" fontSize="8" fill="#6b7280">$1.50</text>
+                  <text x="15" y="120" fontSize="8" fill="#6b7280">$1.00</text>
+                  
+                  <text x="50" y="140" fontSize="8" fill="#6b7280">100mi</text>
+                  <text x="150" y="140" fontSize="8" fill="#6b7280">300mi</text>
+                  <text x="250" y="140" fontSize="8" fill="#6b7280">500mi</text>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Profile Performance & Response Time */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Profile Stats */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6">Profile Performance</h2>
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="text-center p-4 bg-orange-50 rounded-lg">
-                <div className="text-2xl font-bold text-orange-900">{defaultAnalytics.profileViews}</div>
-                <div className="text-sm text-orange-700">Profile Views</div>
+        {/* Time Analytics */}
+        <div className="card">
+          <div className="card-header">
+            <h2 className="card-title">Idle Time vs. Driving Time</h2>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">156h</div>
+                <div className="text-sm text-gray-600">Driving Time</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-900">{defaultAnalytics.profileClicks}</div>
-                <div className="text-sm text-green-700">Profile Clicks</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-600">32h</div>
+                <div className="text-sm text-gray-600">Idle Time</div>
               </div>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between text-sm mb-1">
-                  <span className="text-gray-600">Click-through Rate</span>
-                  <span className="font-semibold">{defaultAnalytics.clickThroughRate}%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="bg-green-500 h-2 rounded-full transition-all duration-500" 
-                    style={{ width: `${Math.min(defaultAnalytics.clickThroughRate, 100)}%` }}
-                  ></div>
-                </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600">83%</div>
+                <div className="text-sm text-gray-600">Efficiency</div>
               </div>
             </div>
-          </div>
-
-          {/* Message Distribution */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6">Message Distribution</h2>
-            <MessagesBarChart 
-              sent={defaultAnalytics.totalMessagesSent} 
-              received={defaultAnalytics.totalMessagesReceived} 
-            />
-          </div>
-
-          {/* Response Time Gauge */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6">Response Performance</h2>
-            <div className="flex items-center justify-center h-48">
-              <ResponseTimeGauge value={responseTimeMinutes} maxValue={60} />
-            </div>
-            <p className="text-center text-sm text-gray-600 mt-2">
-              Average: {defaultAnalytics.avgResponseTime}
-            </p>
-          </div>
-        </div>
-
-        {/* Recent Activity */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Recent Activity</h2>
-          {defaultAnalytics.recentActivity.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            <div className="h-64 bg-gray-50 rounded-lg p-4">
+              <svg viewBox="0 0 600 200" className="w-full h-full">
+                {/* Grid */}
+                <defs>
+                  <pattern id="grid4" width="60" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 60 0 L 0 0 0 20" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid4)" />
+                
+                {/* Stacked bars for each day */}
+                {/* Monday */}
+                <rect x="40" y="40" width="50" height="120" fill="#3b82f6" rx="2"/>
+                <rect x="40" y="160" width="50" height="20" fill="#f59e0b" rx="2"/>
+                <text x="65" y="35" textAnchor="middle" fontSize="10" fill="#374151">Mon</text>
+                
+                {/* Tuesday */}
+                <rect x="110" y="50" width="50" height="110" fill="#3b82f6" rx="2"/>
+                <rect x="110" y="160" width="50" height="20" fill="#f59e0b" rx="2"/>
+                <text x="135" y="35" textAnchor="middle" fontSize="10" fill="#374151">Tue</text>
+                
+                {/* Wednesday */}
+                <rect x="180" y="30" width="50" height="130" fill="#3b82f6" rx="2"/>
+                <rect x="180" y="160" width="50" height="20" fill="#f59e0b" rx="2"/>
+                <text x="205" y="35" textAnchor="middle" fontSize="10" fill="#374151">Wed</text>
+                
+                {/* Thursday */}
+                <rect x="250" y="60" width="50" height="100" fill="#3b82f6" rx="2"/>
+                <rect x="250" y="160" width="50" height="20" fill="#f59e0b" rx="2"/>
+                <text x="275" y="35" textAnchor="middle" fontSize="10" fill="#374151">Thu</text>
+                
+                {/* Friday */}
+                <rect x="320" y="45" width="50" height="115" fill="#3b82f6" rx="2"/>
+                <rect x="320" y="160" width="50" height="20" fill="#f59e0b" rx="2"/>
+                <text x="345" y="35" textAnchor="middle" fontSize="10" fill="#374151">Fri</text>
+                
+                {/* Saturday */}
+                <rect x="390" y="80" width="50" height="80" fill="#3b82f6" rx="2"/>
+                <rect x="390" y="160" width="50" height="20" fill="#f59e0b" rx="2"/>
+                <text x="415" y="35" textAnchor="middle" fontSize="10" fill="#374151">Sat</text>
+                
+                {/* Sunday */}
+                <rect x="460" y="140" width="50" height="20" fill="#3b82f6" rx="2"/>
+                <rect x="460" y="160" width="50" height="20" fill="#f59e0b" rx="2"/>
+                <text x="485" y="35" textAnchor="middle" fontSize="10" fill="#374151">Sun</text>
+                
+                {/* Y-axis labels */}
+                <text x="25" y="50" fontSize="9" fill="#6b7280">12h</text>
+                <text x="25" y="90" fontSize="9" fill="#6b7280">8h</text>
+                <text x="25" y="130" fontSize="9" fill="#6b7280">4h</text>
+                <text x="25" y="170" fontSize="9" fill="#6b7280">0h</text>
               </svg>
-              <p>No recent activity yet. Start chatting to see your activity!</p>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {defaultAnalytics.recentActivity.slice(0, 8).map((event, i) => (
-                <div key={event.id || i} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    event.event_type === 'message_sent' ? 'bg-orange-100 text-orange-600' :
-                    event.event_type === 'message_received' ? 'bg-green-100 text-green-600' :
-                    event.event_type === 'profile_view' ? 'bg-amber-100 text-amber-600' :
-                    event.event_type === 'conversation_started' ? 'bg-orange-100 text-orange-600' :
-                    'bg-gray-100 text-gray-600'
-                  }`}>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-900">
-                      {event.event_type === 'message_sent' && 'Message Sent'}
-                      {event.event_type === 'message_received' && 'Message Received'}
-                      {event.event_type === 'profile_view' && 'Profile Viewed'}
-                      {event.event_type === 'conversation_started' && 'New Conversation'}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {new Date(event.created_at).toLocaleString()}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div className="flex justify-center space-x-6 mt-4">
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">Driving Time</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">Idle Time</span>
+              </div>
             </div>
-          )}
+          </div>
         </div>
-          </>
-        )}
       </div>
     </DashboardLayout>
   )
