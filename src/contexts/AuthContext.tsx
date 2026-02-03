@@ -22,12 +22,36 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState<AuthUser | null>(() => {
+    // Try to get cached user from localStorage for instant load
+    if (typeof window !== 'undefined') {
+      const cached = localStorage.getItem('takurabid_user')
+      if (cached) {
+        try {
+          return JSON.parse(cached)
+        } catch {
+          return null
+        }
+      }
+    }
+    return null
+  })
+  const [isLoading, setIsLoading] = useState(() => {
+    // If we have cached user, don't show loading
+    if (typeof window !== 'undefined' && localStorage.getItem('takurabid_user')) {
+      return false
+    }
+    return true
+  })
 
   useEffect(() => {
-    // Check for existing session
+    // Check for existing session with short timeout
     const initializeAuth = async () => {
+      // Very short timeout - 500ms max for auth check
+      const timeout = setTimeout(() => {
+        setIsLoading(false)
+      }, 500)
+
       try {
         const { data: { session } } = await supabase.auth.getSession()
         
@@ -40,18 +64,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             .single()
 
           if (userData) {
-            setUser({
+            const authUser = {
               id: userData.id,
               type: userData.type,
               name: userData.name,
               avatar: userData.avatar,
               email: session.user.email
-            })
+            }
+            setUser(authUser)
+            // Cache for faster loads
+            localStorage.setItem('takurabid_user', JSON.stringify(authUser))
           }
+        } else {
+          // No session - clear cache
+          localStorage.removeItem('takurabid_user')
+          setUser(null)
         }
       } catch (error) {
         console.error('Error initializing auth:', error)
       } finally {
+        clearTimeout(timeout)
         setIsLoading(false)
       }
     }
@@ -175,13 +207,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (userData) {
-        setUser({
+        const authUser = {
           id: userData.id,
           type: userData.type,
           name: userData.name,
           avatar: userData.avatar,
           email: userData.email
-        })
+        }
+        setUser(authUser)
+        // Cache for faster future loads
+        localStorage.setItem('takurabid_user', JSON.stringify(authUser))
       }
     } catch (error) {
       console.error('Sign in error:', error)
@@ -193,6 +228,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await supabase.auth.signOut()
       setUser(null)
+      localStorage.removeItem('takurabid_user')
     } catch (error) {
       console.error('Sign out error:', error)
       throw error

@@ -1,1 +1,124 @@
-[00:00:03.022] Server  LOG     ✓ Ready in 2.1s
+[00:00:02.964] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:03.377] Server  LOG     ✓ Ready in 2.5s
+[00:00:10.619] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:24.902] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:36.007] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:19.835] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:20.595] Browser ERROR   {"__isAuthError":true,"code":"refresh_token_not_found","name":"AuthApiError","status":400}
+[00:01:45.391] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:01:45.391] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:01:45.391] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:01:45.391] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:01:45.391] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:01:45.391] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:01:58.616] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:32.100] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:32.100] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:32.100] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:32.100] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:32.100] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:32.100] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:36.743] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:36.743] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:36.743] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:36.743] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:36.743] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:02:36.743] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:03:09.750] Browser ERROR   Error starting new chat: {"code":"22P02","details":null,"hint":null,"message":"invalid input syntax for type uuid: \"Job-001\""}
+[00:04:16.276] Server  LOG     ✓ Compiled in 46ms
+[00:04:26.109] Server  LOG     ✓ Compiled in 2.4s
+[00:04:34.079] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:07.314] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:22.821] Browser LOG     Starting chat with: {"clientId":"a5066b25-7890-4cab-9e30-5292fb5f3f47","driverId":"ad2c4746-1457-43bc-b561-5d11bbd7a786","jobId":"Job-001"}
+[00:07:13.670] Server  LOG     ✓ Compiled in 288ms
+[00:07:27.197] Server  LOG     ✓ Compiled in 162ms
+[00:07:50.538] Server  LOG     ✓ Compiled in 190ms
+[00:09:08.597] Browser ERROR   Error fetching conversation: {"code":"22P02","details":null,"hint":null,"message":"invalid input syntax for type uuid: \"Job-001\""}
+[00:09:08.597] Browser ERROR   Error starting new chat: {}
+[00:09:58.439] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:20.304] Browser LOG     Starting chat with: {"clientId":"a5066b25-7890-4cab-9e30-5292fb5f3f47","driverId":"ad2c4746-1457-43bc-b561-5d11bbd7a786","jobId":"a84cb2b2-c7b5-48eb-8f11-fdd3254b92b9"}
+[00:10:56.145] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:38.278] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:41.993] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:53.392] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:53.657] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:54.039] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:54.205] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:54.423] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:54.907] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:55.389] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:55.556] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:55.755] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:56.406] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:11:57.305] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:12:10.216] Server  LOG     ✓ Compiled in 198ms
+[00:12:10.262] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 2f41d97d-e875-4c07-877a-deaea474574a
+[00:12:21.638] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:34.447] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:00.660] Server  LOG     ✓ Compiled in 297ms
+[00:15:05.526] Browser LOG     Sending message: {"content":"ok ok noted","conversationId":"ef7e5e14-cc13-4555-b41e-0782c98abcd5","userId":"a5066b25-7890-4cab-9e30-5292fb5f3f47"}
+[00:15:05.856] Browser LOG     Message sent successfully: {"content":"ok ok noted","conversation_id":"ef7e5e14-cc13-4555-b41e-0782c98abcd5","created_at":"2026-02-02T01:25:24.70607+00:00","delivered":false,"delivered_at":null,"id":"d1b161f3-9885-48b3-99bb-6a3e14c889db","read":false,"read_at":null,"sender_id":"a5066b25-7890-4cab-9e30-5292fb5f3f47","updated_at":"2026-02-02T01:25:24.70607+00:00"}
+[00:15:14.738] Server  LOG     ✓ Compiled in 198ms
+[00:16:04.483] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:11.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:37.043] Browser LOG     Sending message: {"content":"thank you , ORDER RECEIVED ","conversationId":"ef7e5e14-cc13-4555-b41e-0782c98abcd5","userId":"a5066b25-7890-4cab-9e30-5292fb5f3f47"}
+[00:16:37.510] Browser LOG     Message sent successfully: {"content":"thank you , ORDER RECEIVED","conversation_id":"ef7e5e14-cc13-4555-b41e-0782c98abcd5","created_at":"2026-02-02T01:26:56.374923+00:00","delivered":false,"delivered_at":null,"id":"ae3f77e5-d4b7-49a7-92ee-d64b8a2f8360","read":false,"read_at":null,"sender_id":"a5066b25-7890-4cab-9e30-5292fb5f3f47","updated_at":"2026-02-02T01:26:56.374923+00:00"}
+[00:16:55.800] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:17:42.454] Browser LOG     Sending message: {"content":"THANK YOU MAAM FOR CHOOSING TAKURABID, ENJOY YOUR DAY","conversationId":"ef7e5e14-cc13-4555-b41e-0782c98abcd5","userId":"ad2c4746-1457-43bc-b561-5d11bbd7a786"}
+[00:17:42.922] Browser LOG     Message sent successfully: {"content":"THANK YOU MAAM FOR CHOOSING TAKURABID, ENJOY YOUR DAY","conversation_id":"ef7e5e14-cc13-4555-b41e-0782c98abcd5","created_at":"2026-02-02T01:28:01.748888+00:00","delivered":false,"delivered_at":null,"id":"4e25842b-4101-489e-a9e3-dbccbee9e17d","read":false,"read_at":null,"sender_id":"ad2c4746-1457-43bc-b561-5d11bbd7a786","updated_at":"2026-02-02T01:28:01.748888+00:00"}
+[00:18:47.439] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:18:59.712] Browser LOG     Starting chat with: {"clientId":"a5066b25-7890-4cab-9e30-5292fb5f3f47","driverId":"ad2c4746-1457-43bc-b561-5d11bbd7a786","jobId":"e95a1822-7d93-47e6-94bd-16b914217210"}

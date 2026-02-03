@@ -236,12 +236,14 @@ function ConversationList({ conversations, selectedConversation, onSelectConvers
   )
 }
 
-function ChatWindow({ conversation, onSendMessage, onStartCall }: { 
+function ChatWindow({ conversation, onSendMessage, onStartCall, onDeleteMessage }: { 
   conversation: ConversationWithDetails | null
   onSendMessage: (message: string) => void
   onStartCall: (callType: 'audio' | 'video') => void
+  onDeleteMessage: (messageId: string) => void
 }) {
   const [inputValue, setInputValue] = useState('')
+  const [showDeleteMenu, setShowDeleteMenu] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = () => {
@@ -257,6 +259,11 @@ function ChatWindow({ conversation, onSendMessage, onStartCall }: {
       onSendMessage(inputValue)
       setInputValue('')
     }
+  }
+
+  const handleDeleteMessage = (messageId: string) => {
+    onDeleteMessage(messageId)
+    setShowDeleteMenu(null)
   }
 
   if (!conversation) {
@@ -326,27 +333,71 @@ function ChatWindow({ conversation, onSendMessage, onStartCall }: {
             <p>No messages yet. Start a conversation!</p>
           </div>
         ) : (
-          conversation.messages.map((message) => (
-            <div
-              key={message.id}
-              className={`flex ${message.sender_id === conversation.driver_id ? 'justify-end' : 'justify-start'}`}
-            >
+          conversation.messages.map((message) => {
+            const isOwnMessage = message.sender_id === conversation.driver_id
+            return (
               <div
-                className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                  message.sender_id === conversation.driver_id
-                    ? 'bg-gray-900 text-white'
-                    : 'bg-gray-200 text-gray-900'
-                }`}
+                key={message.id}
+                className={`flex ${isOwnMessage ? 'justify-end' : 'justify-start'}`}
               >
-                <p className="text-sm">{message.content}</p>
-                <p className={`text-xs mt-1 ${
-                  message.sender_id === conversation.driver_id ? 'text-gray-300' : 'text-gray-500'
-                }`}>
-                  {new Date(message.created_at).toLocaleTimeString()}
-                </p>
+                <div className="relative group">
+                  <div
+                    className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                      isOwnMessage
+                        ? 'bg-gray-900 text-white'
+                        : 'bg-gray-200 text-gray-900'
+                    }`}
+                    onContextMenu={(e) => {
+                      if (isOwnMessage) {
+                        e.preventDefault()
+                        setShowDeleteMenu(showDeleteMenu === message.id ? null : message.id)
+                      }
+                    }}
+                  >
+                    <p className="text-sm">{message.content}</p>
+                    <p className={`text-xs mt-1 ${
+                      isOwnMessage ? 'text-gray-300' : 'text-gray-500'
+                    }`}>
+                      {new Date(message.created_at).toLocaleTimeString()}
+                    </p>
+                  </div>
+                  
+                  {/* Delete button for own messages */}
+                  {isOwnMessage && (
+                    <button
+                      onClick={() => setShowDeleteMenu(showDeleteMenu === message.id ? null : message.id)}
+                      className="absolute -left-8 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity p-1 text-gray-400 hover:text-red-500"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  )}
+                  
+                  {/* Delete confirmation popup */}
+                  {showDeleteMenu === message.id && (
+                    <div className={`absolute ${isOwnMessage ? 'right-0' : 'left-0'} top-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 z-10 overflow-hidden`}>
+                      <button
+                        onClick={() => handleDeleteMessage(message.id)}
+                        className="flex items-center space-x-2 px-4 py-2 text-red-600 hover:bg-red-50 transition-colors w-full"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                        <span className="text-sm font-medium">Delete</span>
+                      </button>
+                      <button
+                        onClick={() => setShowDeleteMenu(null)}
+                        className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:bg-gray-50 transition-colors w-full border-t border-gray-100"
+                      >
+                        <span className="text-sm">Cancel</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))
+            )
+          })
         )}
         <div ref={messagesEndRef} />
       </div>
@@ -603,6 +654,30 @@ export default function DriverChat() {
     setCallerName('')
   }
 
+  // Handle deleting a message
+  const handleDeleteMessage = async (messageId: string) => {
+    if (!user?.id) return
+
+    try {
+      await messageService.deleteMessage(messageId, user.id)
+      
+      // Update local state to remove the message
+      setConversations(prev =>
+        prev.map(conv => ({
+          ...conv,
+          messages: conv.messages.filter(m => m.id !== messageId),
+          lastMessage: conv.messages.filter(m => m.id !== messageId).slice(-1)[0]?.content || '',
+          lastMessageTime: conv.messages.filter(m => m.id !== messageId).slice(-1)[0]
+            ? new Date(conv.messages.filter(m => m.id !== messageId).slice(-1)[0].created_at).toLocaleTimeString()
+            : ''
+        }))
+      )
+    } catch (error) {
+      console.error('Error deleting message:', error)
+      alert(`Failed to delete message: ${error instanceof Error ? error.message : 'Unknown error'}`)
+    }
+  }
+
   return (
     <DashboardLayout userType="driver">
       <div className="content-area">
@@ -639,6 +714,7 @@ export default function DriverChat() {
               conversation={selectedConv || null}
               onSendMessage={handleSendMessage}
               onStartCall={handleStartCall}
+              onDeleteMessage={handleDeleteMessage}
             />
           </div>
         </div>

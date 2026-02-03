@@ -13,6 +13,68 @@ interface CallModalProps {
   onClose: () => void
 }
 
+// Simple beep sound generator using Web Audio API
+const playRingtone = (audioContextRef: React.MutableRefObject<AudioContext | null>, isRinging: boolean): ReturnType<typeof setInterval> | null => {
+  if (!isRinging) return null
+  
+  try {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    audioContextRef.current = audioContext
+    
+    const playBeep = () => {
+      if (!audioContextRef.current || audioContextRef.current.state === 'closed') return
+      
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+      
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+      
+      oscillator.frequency.value = 440 // A4 note
+      oscillator.type = 'sine'
+      
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5)
+      
+      oscillator.start(audioContext.currentTime)
+      oscillator.stop(audioContext.currentTime + 0.5)
+    }
+    
+    // Play beep immediately and then every 2 seconds
+    playBeep()
+    const interval = setInterval(playBeep, 2000)
+    
+    return interval
+  } catch (e) {
+    console.log('Audio not supported')
+    return null
+  }
+}
+
+const playHangupSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    const oscillator = audioContext.createOscillator()
+    const gainNode = audioContext.createGain()
+    
+    oscillator.connect(gainNode)
+    gainNode.connect(audioContext.destination)
+    
+    oscillator.frequency.value = 200
+    oscillator.type = 'sine'
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime)
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3)
+    
+    oscillator.start(audioContext.currentTime)
+    oscillator.stop(audioContext.currentTime + 0.3)
+    
+    setTimeout(() => audioContext.close(), 500)
+  } catch (e) {
+    console.log('Audio not supported')
+  }
+}
+
 export function CallModal({ 
   isOpen, 
   callData, 
@@ -31,7 +93,27 @@ export function CallModal({
   
   const localVideoRef = useRef<HTMLVideoElement>(null)
   const remoteVideoRef = useRef<HTMLVideoElement>(null)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const ringtoneIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  // Ringtone effect
+  useEffect(() => {
+    if (isOpen && callStatus === 'ringing') {
+      ringtoneIntervalRef.current = playRingtone(audioContextRef, true)
+    }
+    
+    return () => {
+      if (ringtoneIntervalRef.current) {
+        clearInterval(ringtoneIntervalRef.current)
+        ringtoneIntervalRef.current = null
+      }
+      if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+        audioContextRef.current.close()
+        audioContextRef.current = null
+      }
+    }
+  }, [isOpen, callStatus])
 
   // Set video streams
   useEffect(() => {
@@ -102,6 +184,19 @@ export function CallModal({
   }
 
   const handleCallEnded = () => {
+    // Stop ringtone
+    if (ringtoneIntervalRef.current) {
+      clearInterval(ringtoneIntervalRef.current)
+      ringtoneIntervalRef.current = null
+    }
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+      audioContextRef.current.close()
+      audioContextRef.current = null
+    }
+    
+    // Play hangup sound
+    playHangupSound()
+    
     setCallStatus('ended')
     setTimeout(() => {
       onClose()
