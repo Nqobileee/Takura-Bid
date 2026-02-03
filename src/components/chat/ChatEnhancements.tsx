@@ -161,7 +161,7 @@ export function ReadReceipt({ status, isOwn }: ReadReceiptProps) {
 export function useTypingIndicator(conversationId: string, userId: string) {
   const [isOtherTyping, setIsOtherTyping] = useState(false)
   const [typingUserName, setTypingUserName] = useState('')
-  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const typingTimeoutRef = useRef<NodeJS.Timeout>()
   const lastTypingRef = useRef<number>(0)
 
   // Subscribe to typing events
@@ -225,7 +225,7 @@ export function EnhancedMessageInput({
   disabled,
   placeholder = 'Type your message...'
 }: EnhancedMessageInputProps) {
-  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const typingTimeoutRef = useRef<NodeJS.Timeout>()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value
