@@ -1,1 +1,300 @@
-[00:00:03.022] Server  LOG     ✓ Ready in 2.1s
+[00:00:01.523] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.706] Server  LOG     ✓ Ready in 1315ms
+[00:00:14.989] Server  ERROR   ⨯ ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:15.814] Server  ERROR   ⨯ ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:16.038] Browser ERROR   uncaughtError: Error: ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:16.230] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:16.230] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:16.808] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:56.566] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:59.564] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:23.558] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:26.556] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:13.559] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:20:51.567] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:26:24.560] Browser ERROR   ./Takura-Bid/src/lib/supabase.ts:1:1
+Module not found: Can't resolve '@supabase/supabase-js'
+> 1 | import { createClient } from '@supabase/supabase-js'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  4 | const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+Import traces:
+  Client Component Browser:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component Browser]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./Takura-Bid/src/lib/supabase.ts [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Client Component SSR]
+    ./Takura-Bid/src/contexts/AuthContext.tsx [Server Component]
+    ./Takura-Bid/src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
