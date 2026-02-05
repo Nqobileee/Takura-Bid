@@ -5,21 +5,21 @@
 
 @layer base {
   :root {
-    --primary-accent: #f97316;
-    --secondary-accent: #ea580c;
+    --primary-accent: #000000;
+    --secondary-accent: #1a1a1a;
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --error-color: #ef4444;
-    --main-bg: #fffbf7;
+    --main-bg: #ffffff;
     --card-bg: #ffffff;
-    --text-primary: #1c1917;
-    --text-secondary: #57534e;
-    --text-muted: #a8a29e;
-    --border-color: #fed7aa;
-    --border-light: #fff7ed;
-    --hover-bg: #fff7ed;
-    --glow-effect: 0 0 25px rgba(249, 115, 22, 0.1);
-    --glow-effect-strong: 0 0 40px rgba(249, 115, 22, 0.15);
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --border-color: #e5e7eb;
+    --border-light: #f3f4f6;
+    --hover-bg: #f9fafb;
+    --glow-effect: 0 0 25px rgba(0, 0, 0, 0.05);
+    --glow-effect-strong: 0 0 40px rgba(0, 0, 0, 0.1);
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -110,11 +110,11 @@
   }
 
   .brand-logo {
-    @apply text-2xl font-bold text-orange-600 tracking-tight hover:text-orange-700 transition-colors;
+    @apply text-2xl font-bold text-gray-900 tracking-tight hover:text-gray-700 transition-colors;
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
     letter-spacing: -0.05em;
-    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -134,7 +134,7 @@
 
   .nav-link.active::after {
     content: '';
-    @apply absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-orange-500;
+    @apply absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gray-900;
   }
 
   .user-profile {
@@ -263,66 +263,5 @@
 
   .shadow-professional {
     box-shadow: var(--shadow-md);
-  }
-
-  /* Sidebar */
-  .sidebar {
-    @apply h-screen bg-white border-r border-gray-200 flex flex-col;
-    width: 256px;
-    position: sticky;
-    top: 0;
-  }
-
-  .sidebar-content {
-    @apply flex flex-col h-full p-4;
-  }
-
-  .logo-section {
-    @apply flex items-center space-x-3 px-2 py-4 mb-6;
-  }
-
-  .logo-icon {
-    @apply flex-shrink-0;
-  }
-
-  .logo-text {
-    @apply text-xl font-bold text-gray-900 tracking-tight;
-  }
-
-  .navigation {
-    @apply flex-1;
-  }
-
-  .nav-list {
-    @apply space-y-1;
-  }
-
-  .nav-item {
-    @apply list-none;
-  }
-
-  .sidebar .nav-link {
-    @apply flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-all duration-200 font-medium;
-  }
-
-  .sidebar .nav-link.active {
-    @apply bg-gray-900 text-white hover:bg-gray-800;
-  }
-
-  .sidebar .nav-link.active .nav-icon {
-    @apply text-white;
-  }
-
-  .nav-icon {
-    @apply w-5 h-5 flex-shrink-0;
-  }
-
-  /* Dashboard Layout */
-  .dashboard-wrapper {
-    @apply flex min-h-screen bg-gray-50;
-  }
-
-  .dashboard-main {
-    @apply flex-1 overflow-x-hidden;
   }
 }

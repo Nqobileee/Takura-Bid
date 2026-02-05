@@ -52,7 +52,7 @@ export default function PostLoadPage() {
                 {/* Load Information */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
-                    <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                    <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mr-3">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v13a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2v2h2V6H5zm2 2v2H5v-2h2zm-2 2v2h2v-2H5zm2 2v2H5v-2h2zm2-8v2h2V6H9zm2 2v2H9v-2h2zm-2 2v2h2v-2H9zm2 2v2H9v-2h2zm2-8v2h2V6h-2zm2 2v2h-2v-2h2zm-2 2v2h2v-2h-2zm2 2v2h-2v-2h2z"/>
                   </svg>
@@ -106,7 +106,7 @@ export default function PostLoadPage() {
             {/* Location Information */}
             <div className="bg-gray-50 p-4 lg:p-6 rounded-lg">
               <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4 lg:mb-6 flex items-center">
-                <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center mr-3">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" fillRule="evenodd"></path>
                   </svg>

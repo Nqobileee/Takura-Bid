@@ -10,14 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.tsx',
-      },
-    },
-  },
 }
 
 export default nextConfig
