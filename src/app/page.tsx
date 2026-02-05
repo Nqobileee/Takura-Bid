@@ -1,11 +1,16 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 
 export default function HomePage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-[#3f2a52] selection:text-white">
       {/* Floating Navbar */}
       <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-6">
-        <header className="w-full max-w-5xl bg-white/80 backdrop-blur-md border border-gray-100 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] px-8 py-4 flex items-center justify-between transition-all duration-300 hover:shadow-[0_8px_30px_rgb(63,42,82,0.08)]">
+        <header className="w-full max-w-5xl bg-white/80 backdrop-blur-md border border-gray-100 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] px-8 py-4 flex items-center justify-between transition-all duration-300 hover:shadow-[0_8px_30px_rgb(63,42,82,0.08)] relative">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-[#3f2a52] rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(63,42,82,0.3)]">
               <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,13 +33,36 @@ export default function HomePage() {
           </nav>
 
           <div className="md:hidden">
-             {/* Mobile menu placeholder if needed, simplified for main view */}
-             <div className="w-6 h-6 flex flex-col justify-center space-y-1.5 cursor-pointer group">
-                <span className="w-full h-0.5 bg-gray-600 group-hover:bg-[#3f2a52] transition-colors"></span>
-                <span className="w-2/3 h-0.5 bg-gray-600 group-hover:bg-[#3f2a52] transition-colors"></span>
-             </div>
+             <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="w-8 h-8 flex flex-col justify-center items-center space-y-1.5 cursor-pointer group focus:outline-none"
+             >
+                <span className={`w-6 h-0.5 bg-gray-600 group-hover:bg-[#3f2a52] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                <span className={`w-4 h-0.5 bg-gray-600 group-hover:bg-[#3f2a52] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                <span className={`w-6 h-0.5 bg-gray-600 group-hover:bg-[#3f2a52] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+             </button>
           </div>
         </header>
+      </div>
+
+      {/* Mobile Menu Drawer */}
+       <div className={`fixed inset-0 z-40 bg-white/90 backdrop-blur-xl transition-transform duration-300 md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="flex flex-col items-center justify-center h-full space-y-8">
+          <Link 
+            href="/driver" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-2xl font-bold text-gray-900 hover:text-[#3f2a52] transition-colors"
+          >
+            Driver Portal
+          </Link>
+          <Link 
+            href="/client" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-2xl font-bold text-gray-900 hover:text-[#3f2a52] transition-colors"
+          >
+            Client Portal
+          </Link>
+        </div>
       </div>
 
       {/* Hero Section */}
