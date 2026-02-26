@@ -71,34 +71,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signUp = async (email: string, password: string, name: string, role: 'CLIENT' | 'DRIVER') => {
-    const supabase = createClient()
-    if (!supabase) return { error: { message: 'Database not available' } }
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, name, role }),
+      })
 
-    const { data: existing } = await supabase
-      .from('users')
-      .select('user_id')
-      .eq('email', email)
-      .maybeSingle()
+      const data = await res.json()
 
-    if (existing) return { error: { message: 'An account with this email already exists' } }
+      if (!res.ok) {
+        return { error: { message: data.error ?? 'Signup failed' } }
+      }
 
-    const user_id = crypto.randomUUID()
-    const { error } = await supabase.from('users').insert({
-      user_id,
-      email,
-      password,
-      name,
-      role,
-      account_status: 'Active',
-    })
-
-    if (error) return { error: { message: error.message } }
-
-    const authUser: AuthUser = { user_id, email, name, role }
-    setUser(authUser)
-    localStorage.setItem(SESSION_KEY, JSON.stringify(authUser))
-    setSessionCookie(user_id)
-    return { user: authUser }
+      const authUser: AuthUser = {
+        user_id: data.user_id,
+        email: data.email,
+        name: data.name,
+        role: data.role,
+      }
+      setUser(authUser)
+      localStorage.setItem(SESSION_KEY, JSON.stringify(authUser))
+      setSessionCookie(authUser.user_id)
+      return { user: authUser }
+    } catch {
+      return { error: { message: 'Network error — please try again' } }
+    }
   }
 
   const signOut = () => {

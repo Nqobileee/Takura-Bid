@@ -14,13 +14,14 @@
 -- ===================== CLEAN SLATE =====================
 -- Drop existing tables from previous (broken) runs.
 -- Order matters: drop child tables first to avoid FK conflicts.
-DROP TABLE IF EXISTS notifications CASCADE;
-DROP TABLE IF EXISTS reviews       CASCADE;
-DROP TABLE IF EXISTS messages      CASCADE;
-DROP TABLE IF EXISTS jobs          CASCADE;
-DROP TABLE IF EXISTS bids          CASCADE;
-DROP TABLE IF EXISTS loads         CASCADE;
-DROP TABLE IF EXISTS users         CASCADE;
+DROP TABLE IF EXISTS notifications   CASCADE;
+DROP TABLE IF EXISTS reviews         CASCADE;
+DROP TABLE IF EXISTS direct_messages CASCADE;
+DROP TABLE IF EXISTS messages        CASCADE;
+DROP TABLE IF EXISTS jobs            CASCADE;
+DROP TABLE IF EXISTS bids            CASCADE;
+DROP TABLE IF EXISTS loads           CASCADE;
+DROP TABLE IF EXISTS users           CASCADE;
 
 -- Drop existing enums so they can be recreated cleanly.
 DROP TYPE IF EXISTS user_role          CASCADE;
@@ -181,6 +182,17 @@ CREATE TABLE reviews (
 );
 
 
+-- 8. DIRECT MESSAGES
+CREATE TABLE direct_messages (
+  dm_id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  sender_id     UUID NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+  recipient_id  UUID NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+  content       TEXT NOT NULL,
+  "read"        BOOLEAN NOT NULL DEFAULT false,
+  sent_at       TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+
 -- ===================== INDEXES =====================
 
 CREATE INDEX idx_loads_client       ON loads(client_id);
@@ -197,19 +209,39 @@ CREATE INDEX idx_messages_recipient ON messages(recipient_id);
 CREATE INDEX idx_notifications_user ON notifications(user_id);
 CREATE INDEX idx_reviews_job        ON reviews(job_id);
 CREATE INDEX idx_users_role         ON users(role);
+CREATE INDEX idx_dm_sender          ON direct_messages(sender_id);
+CREATE INDEX idx_dm_recipient       ON direct_messages(recipient_id);
 
 
 -- ===================== ROW-LEVEL SECURITY =====================
 -- RLS is DISABLED. The app uses the anon key with server-side session auth.
 -- All access control is handled in application code, not DB policies.
 
-ALTER TABLE users         DISABLE ROW LEVEL SECURITY;
-ALTER TABLE loads         DISABLE ROW LEVEL SECURITY;
-ALTER TABLE bids          DISABLE ROW LEVEL SECURITY;
-ALTER TABLE jobs          DISABLE ROW LEVEL SECURITY;
-ALTER TABLE messages      DISABLE ROW LEVEL SECURITY;
-ALTER TABLE notifications DISABLE ROW LEVEL SECURITY;
-ALTER TABLE reviews       DISABLE ROW LEVEL SECURITY;
+ALTER TABLE users           DISABLE ROW LEVEL SECURITY;
+ALTER TABLE loads           DISABLE ROW LEVEL SECURITY;
+ALTER TABLE bids            DISABLE ROW LEVEL SECURITY;
+ALTER TABLE jobs            DISABLE ROW LEVEL SECURITY;
+ALTER TABLE messages        DISABLE ROW LEVEL SECURITY;
+ALTER TABLE direct_messages DISABLE ROW LEVEL SECURITY;
+ALTER TABLE notifications   DISABLE ROW LEVEL SECURITY;
+ALTER TABLE reviews         DISABLE ROW LEVEL SECURITY;
+
+
+-- ===================== GRANTS =====================
+-- Tables created via raw SQL do NOT automatically receive grants for the
+-- anon/authenticated roles. These grants are required for the Supabase
+-- anon key to SELECT/INSERT/UPDATE/DELETE on all tables.
+
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON users           TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON loads           TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bids            TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON jobs            TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON messages        TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON direct_messages TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON notifications   TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON reviews         TO anon, authenticated;
 
 
 -- ============================================================
