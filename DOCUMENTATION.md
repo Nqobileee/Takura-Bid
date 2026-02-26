@@ -19,6 +19,7 @@
 | **Department** | Software Engineering |
 | **Institution** | Harare Institute of Technology |
 | **Academic Year** | 2024 / 2025 |
+| **Production URL** | [https://takura-bid-six.vercel.app/](https://takura-bid-six.vercel.app/) |
 
 ---
 
@@ -225,17 +226,21 @@ The following objectives govern the design, development, and evaluation of Takur
 
 **1.3.1 Primary Objectives**
 
-- **TO** design and implement a competitive freight bidding system that allows registered cargo owners to post structured load specifications and receive simultaneous rate proposals from multiple registered truck drivers, thereby enabling market-rate price discovery.
+- **TO** design and implement a competitive freight bidding system that allows registered cargo owners to post structured load specifications — including cargo type, trip type, urgency classification, and special requirements — and receive simultaneous rate proposals from multiple registered truck drivers, thereby enabling market-rate price discovery.
+
+- **TO** develop an AI-driven smart matching module that connects clients with optimal transport providers by analysing driver specialisation tags, historical star ratings, current availability status, cargo type compatibility, and route expertise, surfacing ranked driver recommendations through a searchable Driver Marketplace interface.
+
+- **TO** implement a multi-stop route optimisation engine that generates recommended delivery sequences for drivers with multiple concurrent jobs, providing per-leg distance, estimated duration, total route metrics, and projected fuel savings percentage.
 
 - **TO** develop a role-partitioned user management system that enforces access control at both the network boundary (Edge Middleware) and application layer (Route Handler role validation), ensuring that clients and drivers interact exclusively with the functionality appropriate to their role.
 
 - **TO** implement a structured load lifecycle management system with formally defined state transitions — from `In Bidding` through `Assigned`, `In Transit`, to `Completed` — with each transition triggered by authenticated, role-validated API operations.
 
-- **TO** provision an automated job contract system that creates a formal job record upon bid acceptance, requiring explicit two-step confirmation (client acceptance of bid, followed by driver acceptance of job) before the contract is activated.
+- **TO** provision an automated job contract system that creates a formal job record upon bid acceptance, supporting real-time delivery progress tracking (`progress_percent` 0–100), invoice generation upon completion, and two-step confirmation (client bid acceptance followed by driver job acceptance) before activation.
 
-- **TO** develop a bidirectional, job-scoped messaging system and an independent direct-message channel, providing structured communication between parties at both the contract level and the platform level.
+- **TO** develop a bidirectional, job-scoped messaging system and an independent direct-message channel, providing structured communication between parties at both the contract level and the platform level, with online status indicators and unread count badges.
 
-- **TO** implement analytics dashboards for both client and driver roles, aggregating key performance metrics including freight expenditure, delivery success rates, earnings trends, and bid acceptance rates.
+- **TO** implement comprehensive analytics dashboards for both client and driver roles, aggregating key performance metrics including freight expenditure trends, on-time delivery rates, earnings distributions, bid acceptance/decline ratios, idle-vs-driving time efficiency, pay-per-kilometre analysis, and driver ranking within the platform population.
 
 **1.3.2 Secondary Objectives**
 
@@ -622,7 +627,7 @@ A purpose-built full-stack web application, designed specifically for the freigh
 |:---|:------------|:------|:---------|
 | FR-01 | The system shall allow users to register with either a CLIENT or DRIVER role, providing name, email, password, and role-specific profile information. | Any | High |
 | FR-02 | The system shall authenticate users via email and password, persisting the session as an HTTP cookie named `takura_user` containing the authenticated user's UUID. | Any | High |
-| FR-03 | The system shall allow authenticated CLIENT users to create freight load postings specifying cargo type, weight, origin city, destination city, distance, budget, pickup date, delivery date, urgency classification, and optional special requirements. | CLIENT | High |
+| FR-03 | The system shall allow authenticated CLIENT users to create freight load postings specifying cargo type, weight, origin city, destination city, distance, budget, pickup date, delivery date, urgency classification (`Standard`/`Urgent`), trip type (`ONE_WAY`/`ROUND_TRIP`), detailed description, and optional special requirements array. | CLIENT | High |
 | FR-04 | The system shall display all loads with status `In Bidding` on a public load board accessible to authenticated DRIVER users. | DRIVER | High |
 | FR-05 | The system shall allow authenticated DRIVER users to submit a bid on any load with status `In Bidding`, specifying a USD amount and an optional cover message. The system shall enforce a maximum of one bid per driver per load. | DRIVER | High |
 | FR-06 | The system shall allow the CLIENT who posted a load to view all bids submitted against that load, including the bidding driver's profile information and proposed rate. | CLIENT | High |
@@ -635,7 +640,17 @@ A purpose-built full-stack web application, designed specifically for the freigh
 | FR-13 | The system shall provide a DRIVER analytics dashboard aggregating total earnings, kilometres driven, bid acceptance rate, weekly earnings distribution, profile views, and profile clicks. | DRIVER | Medium |
 | FR-14 | The system shall allow users to view and update their profile information, including contact details, vehicle information (DRIVER), and company information (CLIENT). | Any | Medium |
 | FR-15 | The system shall generate a notification for the recipient user upon receipt of a direct message, bid acceptance, or job offer. | Any | Low |
-| FR-16 | The system shall allow both CLIENT and DRIVER users to submit a star rating and written review upon job completion. | CLIENT, DRIVER | Low |
+| FR-16 | The system shall allow both CLIENT and DRIVER users to submit a star rating (1–5) and written review upon job completion. Submitted ratings shall aggregate into the reviewee's `driver_ranking` field. | CLIENT, DRIVER | Low |
+| FR-17 | The system shall provide a searchable, filterable Driver Marketplace allowing authenticated CLIENT users to discover registered DRIVER users by specialisation, availability, location, rating, and cargo-type expertise. | CLIENT | High |
+| FR-18 | The system shall maintain driver profile data including professional title, bio, skill tag array, availability status (`AVAILABLE`/`UNAVAILABLE`), total platform earnings, and payment verification status for display in the Driver Marketplace and as AI matching inputs. | DRIVER | High |
+| FR-19 | The system shall generate route optimisation recommendations for drivers with multiple scheduled jobs, displaying recommended stop sequence, per-leg distance (km), per-leg estimated duration (hours), total distance, total time, and projected fuel savings percentage. | DRIVER | Medium |
+| FR-20 | The system shall allow authenticated DRIVER users to update the delivery progress percentage (`progress_percent`, 0–100) of in-transit jobs, surfaced as a progress bar on both client and driver dashboard views. | DRIVER | Medium |
+| FR-21 | The system shall generate downloadable invoices for completed jobs, accessible to the assigned DRIVER via a "Download Invoice" action on the job timeline. | DRIVER | Medium |
+| FR-22 | The system shall display a schedule and availability calendar on the driver's My Jobs page, highlighting dates with scheduled or active jobs across the current month. | DRIVER | Low |
+| FR-23 | The system shall display driver analytics including: total earnings, average rating, total kilometres driven, driver ranking percentile (e.g., Top 5%), profile view count, profile click count, weekly earnings distribution, load acceptance vs. decline rate (donut chart), pay-per-kilometre scatter plot, and idle-time vs. driving-time efficiency breakdown. | DRIVER | Medium |
+| FR-24 | The system shall display client analytics including: total shipping costs (current month and weekly trend), on-time delivery rate (monthly bar chart with target threshold line), shipment volume by route corridor (horizontal bar chart), average cost per kilometre (scatter plot with trend line), cost savings vs. prior month, average delivery time, and driver satisfaction rate. | CLIENT | Medium |
+| FR-25 | The system shall display a load board summary banner on the driver load board showing: available load count, urgent load count, average market rate (USD), and the authenticated driver's active bid count. | DRIVER | Low |
+| FR-26 | The system shall surface a payment verification badge on load board listings for loads whose client has a verified payment method (`payment_verified = true`), providing drivers with financial commitment assurance prior to bid submission. | DRIVER | Low |
 
 ### 3.5.2 Non-Functional Requirements
 
@@ -1050,7 +1065,13 @@ erDiagram
 | `vehicle_type` | `TEXT` | — | Vehicle class or specification. Applicable to DRIVER role. |
 | `licence_number` | `TEXT` | — | Professional driving licence number. DRIVER role only. |
 | `driver_ranking` | `NUMERIC(3,2)` | — | Computed average star rating from received reviews. DRIVER role only. |
-| `profile_views` | `INTEGER` | `DEFAULT 0` | Cumulative profile view count. Analytics use. |
+| `title` | `TEXT` | — | Professional title/specialisation. DRIVER role (e.g., "Expert Heavy Equipment Transport"). AI matching input. |
+| `bio` | `TEXT` | — | Driver biography and description. Displayed in Driver Marketplace. AI matching input. |
+| `availability_status` | `TEXT` | `CHECK (availability_status IN ('AVAILABLE','UNAVAILABLE'))` | Current availability for new jobs. Controls "Hire Driver" button display in Driver Marketplace. |
+| `skill_tags` | `TEXT[]` | — | Array of specialisation tags (e.g., `Heavy Equipment`, `Cold Chain`, `Cross-Border`). AI matching feature set. |
+| `total_earnings` | `NUMERIC(12,2)` | `DEFAULT 0` | Cumulative earnings on the platform. Displayed in Driver Marketplace (e.g., "$33K+ earned"). |
+| `payment_verified` | `BOOLEAN` | `DEFAULT FALSE` | CLIENT payment verification status. Surfaced as badge on driver-facing load board entries. |
+| `profile_views` | `INTEGER` | `DEFAULT 0` | Cumulative profile view count. Driver analytics use. |
 | `created_at` | `TIMESTAMPTZ` | `DEFAULT NOW()` | Record creation timestamp. |
 
 **Table 4.2 — Database Schema: `loads` Table**
@@ -1067,8 +1088,10 @@ erDiagram
 | `budget_usd` | `NUMERIC(10,2)` | — | Client's indicative budget in USD. |
 | `pickup_date` | `DATE` | — | Requested cargo pickup date. |
 | `delivery_date` | `DATE` | — | Required delivery date. |
-| `urgency` | `TEXT` | `CHECK (urgency IN ('Standard','Urgent'))` | Urgency classification affecting driver prioritisation. |
-| `requirements` | `TEXT[]` | — | Array of special handling or equipment requirements. |
+| `urgency` | `TEXT` | `CHECK (urgency IN ('Standard','Urgent'))` | Urgency classification. Urgent loads display a highlighted warning indicator on the driver load board. |
+| `trip_type` | `TEXT` | `CHECK (trip_type IN ('ONE_WAY','ROUND_TRIP'))` | Trip type classification. Influences route optimisation recommendations. |
+| `description` | `TEXT` | — | Detailed free-text load description for drivers. Displayed on load board with expandable "more" link. |
+| `requirements` | `TEXT[]` | — | Array of special handling or equipment requirements (e.g., `Flatbed Truck`, `Crane Loading`, `Refrigerated`, `Low-Loader`). |
 | `assigned_driver_id` | `UUID` | `FK → users.user_id` | References the DRIVER assigned upon bid acceptance. Null until assignment. |
 | `status` | `TEXT` | `DEFAULT 'In Bidding'` | Load lifecycle status. Values: `In Bidding`, `Assigned`, `In Transit`, `Completed`. |
 | `created_at` | `TIMESTAMPTZ` | `DEFAULT NOW()` | Record creation timestamp. |
@@ -1094,8 +1117,11 @@ erDiagram
 | `load_id` | `TEXT` | `NOT NULL, FK → loads.load_id` | References the load that generated this job. |
 | `driver_id` | `UUID` | `NOT NULL, FK → users.user_id` | References the assigned DRIVER. |
 | `client_id` | `UUID` | `NOT NULL, FK → users.user_id` | References the CLIENT who owns this job. |
-| `agreed_rate_usd` | `NUMERIC(10,2)` | — | The accepted bid rate or direct offer rate in USD. |
+| `agreed_rate_usd` | `NUMERIC(10,2)` | — | The accepted bid rate or direct offer rate in USD. Feeds into driver earnings analytics. |
 | `status` | `TEXT` | `DEFAULT 'Pending'` | Job status. Values: `Pending`, `Active`, `In Transit`, `Completed`. |
+| `progress_percent` | `INTEGER` | `DEFAULT 0, CHECK (progress_percent BETWEEN 0 AND 100)` | Delivery progress percentage. Updated by DRIVER via "Update Progress" interface. Displayed as progress bar on both dashboards. |
+| `started_at` | `TIMESTAMPTZ` | — | Timestamp when the driver started the delivery. Populated when status transitions to `In Transit`. |
+| `completed_at` | `TIMESTAMPTZ` | — | Timestamp when delivery was confirmed complete. Used for on-time delivery rate analytics. |
 | `created_at` | `TIMESTAMPTZ` | `DEFAULT NOW()` | Job creation timestamp. |
 
 **Table 4.5 — Database Schema: `messages` Table**
@@ -1905,21 +1931,25 @@ The current messaging implementation requires manual page refresh to receive new
 
 **6.3.2 Payment Integration**
 
-The current platform resolves freight rate proposals and formalises job contracts but defers financial settlement entirely to external bilateral arrangement between the parties. The recommendation is to integrate a payment gateway — specifically Paynow (Zimbabwe's primary payment aggregator) or Stripe with USD settlement — to enable escrow-style freight payment processing within the platform. This would significantly increase platform trust and provide a mechanism for commision-based revenue generation.
+The current platform resolves freight rate proposals and formalises job contracts but defers financial settlement to external bilateral arrangement. The recommendation is to integrate a payment gateway — specifically Paynow (Zimbabwe's primary payment aggregator) or Stripe with USD settlement — to enable escrow-style freight payment processing within the platform. Payment verification status (`payment_verified`) is already modelled in the database schema, providing a foundation for this integration.
 
 **6.3.3 Native Mobile Application**
 
 The current web application provides a responsive mobile browser experience but lacks native push notification support and offline capability. The recommendation is to develop React Native or Progressive Web Application (PWA) wrappers to enable native push notifications — critical for time-sensitive bid and job offer alerts — and offline load data caching.
 
-**6.3.4 Machine Learning Load-Driver Matching**
+**6.3.4 Enhancement of AI Smart Matching Model**
 
-As the platform accumulates sufficient transaction history, the recommendation is to develop a machine learning matching model — analogous to Convoy's route-optimisation model — that suggests optimal driver-load pairings based on historical route performance, driver acceptance rate, and cargo-type specialisation. This would reduce time-to-assignment and improve delivery outcome predictability.
+The platform's current AI matching module surfaces driver-load recommendations based on profile attributes (specialisation tags, star ratings, availability). The recommendation is to expand the matching model's feature set to incorporate historical route performance, bid acceptance rate, cargo-type delivery history, seasonal availability patterns, and distance preference profiles. As the platform accumulates transaction history, a machine learning regressor trained on historical accepted bids would improve match quality and reduce time-to-assignment. The driver `skill_tags`, `driver_ranking`, `total_earnings`, and `availability_status` fields already provide a structured feature set for model training.
 
-**6.3.5 Driver Credential Verification Integration**
+**6.3.5 Route Optimisation Engine Enhancement**
+
+The current route optimisation module generates multi-stop sequences with distance, time, and fuel savings estimates based on static road network data. The recommendation is to integrate a live mapping API (Google Maps Platform Distance Matrix API or OpenRouteService) to provide real-time traffic-aware route calculations, dynamic re-routing, and GPS-based delivery progress tracking as an alternative to the manual `progress_percent` update model.
+
+**6.3.6 Driver Credential Verification Integration**
 
 The current system captures driver credentials (licence number, vehicle registration) as self-reported profile fields without external verification. The recommendation is to integrate with Zimbabwe's Vehicle Inspection Department (VID) database or the Traffic Safety Council of Zimbabwe (TSCZ) API — if such APIs become publicly available — to enable automated credential verification against authoritative government records.
 
-**6.3.6 Row-Level Security Implementation**
+**6.3.7 Row-Level Security Implementation**
 
 The current database schema disables PostgreSQL Row-Level Security (RLS) across all tables, relying entirely on application-layer access control. The recommendation is to implement RLS policies as a defence-in-depth measure, ensuring that even if an application-layer access control check is bypassed, the database layer enforces data isolation between users and roles.
 
